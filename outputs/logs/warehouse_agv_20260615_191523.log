@@ -1,0 +1,20 @@
+[19:15:23][INFO] 日志文件: outputs/logs\warehouse_agv_20260615_191523.log
+[19:15:23][INFO] Warehouse AGV simulation
+[19:15:23][INFO] Task T001: S1(1, 3) -> OUTBOUND(14, 14)
+[19:15:23][INFO] Task T002: S3(1, 10) -> PACKING(14, 11)
+[19:15:23][INFO] AGV 0: tasks=[], path_length=1
+[19:15:23][INFO] AGV 1: tasks=['T001', 'T002'], path_length=72
+[19:15:23][INFO] AGV 2: tasks=[], path_length=1
+[19:15:23][INFO] AGV 3: tasks=[], path_length=1
+[19:15:23][INFO] ==================================================
+[19:15:23][INFO] 测试用例: warehouse_agv
+[19:15:23][INFO] 仿真步数: 71
+[19:15:23][INFO] 总奖励:   4.00
+[19:15:23][INFO] 结束原因: 所有智能体到达目标 ✓
+[19:15:23][INFO] --------------------------------------------------
+[19:15:23][INFO]   Agent 0: ✓ 到达 | 路径长=1 | 阻塞次数=0
+[19:15:23][INFO]   Agent 1: ✓ 到达 | 路径长=72 | 阻塞次数=0
+[19:15:23][INFO]   Agent 2: ✓ 到达 | 路径长=1 | 阻塞次数=0
+[19:15:23][INFO]   Agent 3: ✓ 到达 | 路径长=1 | 阻塞次数=0
+[19:15:23][INFO] ==================================================
+[19:15:23][INFO] Animation saved: outputs/animations\warehouse_agv.svg

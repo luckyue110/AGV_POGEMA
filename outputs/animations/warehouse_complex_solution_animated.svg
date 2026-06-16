@@ -1,0 +1,355 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="660" viewBox="0 0 960 660">
+<style>
+  .title { font: 700 18px Arial, sans-serif; fill: #111827; }
+  .cell { stroke: #d1d5db; stroke-width: 1; }
+  .free { fill: #f8fafc; }
+  .shelf { fill: #334155; }
+  .pickup { fill: #fde68a; stroke: #92400e; stroke-width: 1.5; }
+  .dropoff { fill: #bbf7d0; stroke: #166534; stroke-width: 1.5; }
+  .start { fill: #bfdbfe; stroke: #1d4ed8; stroke-width: 1.5; }
+  .label { font: 700 9px Arial, sans-serif; fill: #111827; text-anchor: middle; dominant-baseline: central; }
+  .small { font: 12px Arial, sans-serif; fill: #374151; }
+  .legend-title { font: 700 14px Arial, sans-serif; fill: #111827; }
+  .route { fill: none; stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; opacity: 0.74; }
+</style>
+<text x="28" y="24" class="title">Animated Warehouse AGV Solution</text>
+<rect x="28" y="28" width="34" height="34" class="cell free" />
+<rect x="62" y="28" width="34" height="34" class="cell free" />
+<rect x="96" y="28" width="34" height="34" class="cell free" />
+<rect x="130" y="28" width="34" height="34" class="cell free" />
+<rect x="164" y="28" width="34" height="34" class="cell free" />
+<rect x="198" y="28" width="34" height="34" class="cell free" />
+<rect x="232" y="28" width="34" height="34" class="cell free" />
+<rect x="266" y="28" width="34" height="34" class="cell free" />
+<rect x="300" y="28" width="34" height="34" class="cell free" />
+<rect x="334" y="28" width="34" height="34" class="cell free" />
+<rect x="368" y="28" width="34" height="34" class="cell free" />
+<rect x="402" y="28" width="34" height="34" class="cell free" />
+<rect x="436" y="28" width="34" height="34" class="cell free" />
+<rect x="470" y="28" width="34" height="34" class="cell free" />
+<rect x="504" y="28" width="34" height="34" class="cell free" />
+<rect x="538" y="28" width="34" height="34" class="cell free" />
+<rect x="28" y="62" width="34" height="34" class="cell free" />
+<rect x="62" y="62" width="34" height="34" class="cell free" />
+<rect x="96" y="62" width="34" height="34" class="cell free" />
+<rect x="130" y="62" width="34" height="34" class="cell free" />
+<rect x="164" y="62" width="34" height="34" class="cell free" />
+<rect x="198" y="62" width="34" height="34" class="cell free" />
+<rect x="232" y="62" width="34" height="34" class="cell free" />
+<rect x="266" y="62" width="34" height="34" class="cell free" />
+<rect x="300" y="62" width="34" height="34" class="cell free" />
+<rect x="334" y="62" width="34" height="34" class="cell free" />
+<rect x="368" y="62" width="34" height="34" class="cell free" />
+<rect x="402" y="62" width="34" height="34" class="cell free" />
+<rect x="436" y="62" width="34" height="34" class="cell free" />
+<rect x="470" y="62" width="34" height="34" class="cell free" />
+<rect x="504" y="62" width="34" height="34" class="cell free" />
+<rect x="538" y="62" width="34" height="34" class="cell free" />
+<rect x="28" y="96" width="34" height="34" class="cell free" />
+<rect x="62" y="96" width="34" height="34" class="cell free" />
+<rect x="96" y="96" width="34" height="34" class="cell free" />
+<rect x="130" y="96" width="34" height="34" class="cell shelf" />
+<rect x="164" y="96" width="34" height="34" class="cell shelf" />
+<rect x="198" y="96" width="34" height="34" class="cell free" />
+<rect x="232" y="96" width="34" height="34" class="cell shelf" />
+<rect x="266" y="96" width="34" height="34" class="cell shelf" />
+<rect x="300" y="96" width="34" height="34" class="cell free" />
+<rect x="334" y="96" width="34" height="34" class="cell free" />
+<rect x="368" y="96" width="34" height="34" class="cell shelf" />
+<rect x="402" y="96" width="34" height="34" class="cell shelf" />
+<rect x="436" y="96" width="34" height="34" class="cell free" />
+<rect x="470" y="96" width="34" height="34" class="cell shelf" />
+<rect x="504" y="96" width="34" height="34" class="cell shelf" />
+<rect x="538" y="96" width="34" height="34" class="cell free" />
+<rect x="28" y="130" width="34" height="34" class="cell free" />
+<rect x="62" y="130" width="34" height="34" class="cell free" />
+<rect x="96" y="130" width="34" height="34" class="cell free" />
+<rect x="130" y="130" width="34" height="34" class="cell shelf" />
+<rect x="164" y="130" width="34" height="34" class="cell shelf" />
+<rect x="198" y="130" width="34" height="34" class="cell free" />
+<rect x="232" y="130" width="34" height="34" class="cell shelf" />
+<rect x="266" y="130" width="34" height="34" class="cell shelf" />
+<rect x="300" y="130" width="34" height="34" class="cell free" />
+<rect x="334" y="130" width="34" height="34" class="cell free" />
+<rect x="368" y="130" width="34" height="34" class="cell shelf" />
+<rect x="402" y="130" width="34" height="34" class="cell shelf" />
+<rect x="436" y="130" width="34" height="34" class="cell free" />
+<rect x="470" y="130" width="34" height="34" class="cell shelf" />
+<rect x="504" y="130" width="34" height="34" class="cell shelf" />
+<rect x="538" y="130" width="34" height="34" class="cell free" />
+<rect x="28" y="164" width="34" height="34" class="cell free" />
+<rect x="62" y="164" width="34" height="34" class="cell free" />
+<rect x="96" y="164" width="34" height="34" class="cell free" />
+<rect x="130" y="164" width="34" height="34" class="cell shelf" />
+<rect x="164" y="164" width="34" height="34" class="cell shelf" />
+<rect x="198" y="164" width="34" height="34" class="cell free" />
+<rect x="232" y="164" width="34" height="34" class="cell shelf" />
+<rect x="266" y="164" width="34" height="34" class="cell shelf" />
+<rect x="300" y="164" width="34" height="34" class="cell free" />
+<rect x="334" y="164" width="34" height="34" class="cell free" />
+<rect x="368" y="164" width="34" height="34" class="cell shelf" />
+<rect x="402" y="164" width="34" height="34" class="cell shelf" />
+<rect x="436" y="164" width="34" height="34" class="cell free" />
+<rect x="470" y="164" width="34" height="34" class="cell shelf" />
+<rect x="504" y="164" width="34" height="34" class="cell shelf" />
+<rect x="538" y="164" width="34" height="34" class="cell free" />
+<rect x="28" y="198" width="34" height="34" class="cell free" />
+<rect x="62" y="198" width="34" height="34" class="cell free" />
+<rect x="96" y="198" width="34" height="34" class="cell free" />
+<rect x="130" y="198" width="34" height="34" class="cell shelf" />
+<rect x="164" y="198" width="34" height="34" class="cell shelf" />
+<rect x="198" y="198" width="34" height="34" class="cell free" />
+<rect x="232" y="198" width="34" height="34" class="cell shelf" />
+<rect x="266" y="198" width="34" height="34" class="cell shelf" />
+<rect x="300" y="198" width="34" height="34" class="cell free" />
+<rect x="334" y="198" width="34" height="34" class="cell free" />
+<rect x="368" y="198" width="34" height="34" class="cell shelf" />
+<rect x="402" y="198" width="34" height="34" class="cell shelf" />
+<rect x="436" y="198" width="34" height="34" class="cell free" />
+<rect x="470" y="198" width="34" height="34" class="cell shelf" />
+<rect x="504" y="198" width="34" height="34" class="cell shelf" />
+<rect x="538" y="198" width="34" height="34" class="cell free" />
+<rect x="28" y="232" width="34" height="34" class="cell free" />
+<rect x="62" y="232" width="34" height="34" class="cell free" />
+<rect x="96" y="232" width="34" height="34" class="cell free" />
+<rect x="130" y="232" width="34" height="34" class="cell free" />
+<rect x="164" y="232" width="34" height="34" class="cell free" />
+<rect x="198" y="232" width="34" height="34" class="cell free" />
+<rect x="232" y="232" width="34" height="34" class="cell free" />
+<rect x="266" y="232" width="34" height="34" class="cell free" />
+<rect x="300" y="232" width="34" height="34" class="cell free" />
+<rect x="334" y="232" width="34" height="34" class="cell free" />
+<rect x="368" y="232" width="34" height="34" class="cell free" />
+<rect x="402" y="232" width="34" height="34" class="cell free" />
+<rect x="436" y="232" width="34" height="34" class="cell free" />
+<rect x="470" y="232" width="34" height="34" class="cell free" />
+<rect x="504" y="232" width="34" height="34" class="cell free" />
+<rect x="538" y="232" width="34" height="34" class="cell free" />
+<rect x="28" y="266" width="34" height="34" class="cell free" />
+<rect x="62" y="266" width="34" height="34" class="cell free" />
+<rect x="96" y="266" width="34" height="34" class="cell free" />
+<rect x="130" y="266" width="34" height="34" class="cell free" />
+<rect x="164" y="266" width="34" height="34" class="cell free" />
+<rect x="198" y="266" width="34" height="34" class="cell free" />
+<rect x="232" y="266" width="34" height="34" class="cell free" />
+<rect x="266" y="266" width="34" height="34" class="cell free" />
+<rect x="300" y="266" width="34" height="34" class="cell free" />
+<rect x="334" y="266" width="34" height="34" class="cell free" />
+<rect x="368" y="266" width="34" height="34" class="cell free" />
+<rect x="402" y="266" width="34" height="34" class="cell free" />
+<rect x="436" y="266" width="34" height="34" class="cell free" />
+<rect x="470" y="266" width="34" height="34" class="cell free" />
+<rect x="504" y="266" width="34" height="34" class="cell free" />
+<rect x="538" y="266" width="34" height="34" class="cell free" />
+<rect x="28" y="300" width="34" height="34" class="cell free" />
+<rect x="62" y="300" width="34" height="34" class="cell free" />
+<rect x="96" y="300" width="34" height="34" class="cell free" />
+<rect x="130" y="300" width="34" height="34" class="cell shelf" />
+<rect x="164" y="300" width="34" height="34" class="cell shelf" />
+<rect x="198" y="300" width="34" height="34" class="cell free" />
+<rect x="232" y="300" width="34" height="34" class="cell shelf" />
+<rect x="266" y="300" width="34" height="34" class="cell shelf" />
+<rect x="300" y="300" width="34" height="34" class="cell free" />
+<rect x="334" y="300" width="34" height="34" class="cell free" />
+<rect x="368" y="300" width="34" height="34" class="cell shelf" />
+<rect x="402" y="300" width="34" height="34" class="cell shelf" />
+<rect x="436" y="300" width="34" height="34" class="cell free" />
+<rect x="470" y="300" width="34" height="34" class="cell shelf" />
+<rect x="504" y="300" width="34" height="34" class="cell shelf" />
+<rect x="538" y="300" width="34" height="34" class="cell free" />
+<rect x="28" y="334" width="34" height="34" class="cell free" />
+<rect x="62" y="334" width="34" height="34" class="cell free" />
+<rect x="96" y="334" width="34" height="34" class="cell free" />
+<rect x="130" y="334" width="34" height="34" class="cell shelf" />
+<rect x="164" y="334" width="34" height="34" class="cell shelf" />
+<rect x="198" y="334" width="34" height="34" class="cell free" />
+<rect x="232" y="334" width="34" height="34" class="cell shelf" />
+<rect x="266" y="334" width="34" height="34" class="cell shelf" />
+<rect x="300" y="334" width="34" height="34" class="cell free" />
+<rect x="334" y="334" width="34" height="34" class="cell free" />
+<rect x="368" y="334" width="34" height="34" class="cell shelf" />
+<rect x="402" y="334" width="34" height="34" class="cell shelf" />
+<rect x="436" y="334" width="34" height="34" class="cell free" />
+<rect x="470" y="334" width="34" height="34" class="cell shelf" />
+<rect x="504" y="334" width="34" height="34" class="cell shelf" />
+<rect x="538" y="334" width="34" height="34" class="cell free" />
+<rect x="28" y="368" width="34" height="34" class="cell free" />
+<rect x="62" y="368" width="34" height="34" class="cell free" />
+<rect x="96" y="368" width="34" height="34" class="cell free" />
+<rect x="130" y="368" width="34" height="34" class="cell shelf" />
+<rect x="164" y="368" width="34" height="34" class="cell shelf" />
+<rect x="198" y="368" width="34" height="34" class="cell free" />
+<rect x="232" y="368" width="34" height="34" class="cell shelf" />
+<rect x="266" y="368" width="34" height="34" class="cell shelf" />
+<rect x="300" y="368" width="34" height="34" class="cell free" />
+<rect x="334" y="368" width="34" height="34" class="cell free" />
+<rect x="368" y="368" width="34" height="34" class="cell shelf" />
+<rect x="402" y="368" width="34" height="34" class="cell shelf" />
+<rect x="436" y="368" width="34" height="34" class="cell free" />
+<rect x="470" y="368" width="34" height="34" class="cell shelf" />
+<rect x="504" y="368" width="34" height="34" class="cell shelf" />
+<rect x="538" y="368" width="34" height="34" class="cell free" />
+<rect x="28" y="402" width="34" height="34" class="cell free" />
+<rect x="62" y="402" width="34" height="34" class="cell free" />
+<rect x="96" y="402" width="34" height="34" class="cell free" />
+<rect x="130" y="402" width="34" height="34" class="cell shelf" />
+<rect x="164" y="402" width="34" height="34" class="cell shelf" />
+<rect x="198" y="402" width="34" height="34" class="cell free" />
+<rect x="232" y="402" width="34" height="34" class="cell shelf" />
+<rect x="266" y="402" width="34" height="34" class="cell shelf" />
+<rect x="300" y="402" width="34" height="34" class="cell free" />
+<rect x="334" y="402" width="34" height="34" class="cell free" />
+<rect x="368" y="402" width="34" height="34" class="cell shelf" />
+<rect x="402" y="402" width="34" height="34" class="cell shelf" />
+<rect x="436" y="402" width="34" height="34" class="cell free" />
+<rect x="470" y="402" width="34" height="34" class="cell shelf" />
+<rect x="504" y="402" width="34" height="34" class="cell shelf" />
+<rect x="538" y="402" width="34" height="34" class="cell free" />
+<rect x="28" y="436" width="34" height="34" class="cell free" />
+<rect x="62" y="436" width="34" height="34" class="cell free" />
+<rect x="96" y="436" width="34" height="34" class="cell free" />
+<rect x="130" y="436" width="34" height="34" class="cell free" />
+<rect x="164" y="436" width="34" height="34" class="cell free" />
+<rect x="198" y="436" width="34" height="34" class="cell free" />
+<rect x="232" y="436" width="34" height="34" class="cell free" />
+<rect x="266" y="436" width="34" height="34" class="cell free" />
+<rect x="300" y="436" width="34" height="34" class="cell free" />
+<rect x="334" y="436" width="34" height="34" class="cell free" />
+<rect x="368" y="436" width="34" height="34" class="cell free" />
+<rect x="402" y="436" width="34" height="34" class="cell free" />
+<rect x="436" y="436" width="34" height="34" class="cell free" />
+<rect x="470" y="436" width="34" height="34" class="cell free" />
+<rect x="504" y="436" width="34" height="34" class="cell free" />
+<rect x="538" y="436" width="34" height="34" class="cell free" />
+<rect x="28" y="470" width="34" height="34" class="cell free" />
+<rect x="62" y="470" width="34" height="34" class="cell free" />
+<rect x="96" y="470" width="34" height="34" class="cell free" />
+<rect x="130" y="470" width="34" height="34" class="cell free" />
+<rect x="164" y="470" width="34" height="34" class="cell free" />
+<rect x="198" y="470" width="34" height="34" class="cell free" />
+<rect x="232" y="470" width="34" height="34" class="cell free" />
+<rect x="266" y="470" width="34" height="34" class="cell free" />
+<rect x="300" y="470" width="34" height="34" class="cell free" />
+<rect x="334" y="470" width="34" height="34" class="cell free" />
+<rect x="368" y="470" width="34" height="34" class="cell free" />
+<rect x="402" y="470" width="34" height="34" class="cell free" />
+<rect x="436" y="470" width="34" height="34" class="cell free" />
+<rect x="470" y="470" width="34" height="34" class="cell free" />
+<rect x="504" y="470" width="34" height="34" class="cell free" />
+<rect x="538" y="470" width="34" height="34" class="cell free" />
+<rect x="28" y="504" width="34" height="34" class="cell free" />
+<rect x="62" y="504" width="34" height="34" class="cell free" />
+<rect x="96" y="504" width="34" height="34" class="cell free" />
+<rect x="130" y="504" width="34" height="34" class="cell free" />
+<rect x="164" y="504" width="34" height="34" class="cell free" />
+<rect x="198" y="504" width="34" height="34" class="cell free" />
+<rect x="232" y="504" width="34" height="34" class="cell free" />
+<rect x="266" y="504" width="34" height="34" class="cell free" />
+<rect x="300" y="504" width="34" height="34" class="cell free" />
+<rect x="334" y="504" width="34" height="34" class="cell free" />
+<rect x="368" y="504" width="34" height="34" class="cell free" />
+<rect x="402" y="504" width="34" height="34" class="cell free" />
+<rect x="436" y="504" width="34" height="34" class="cell free" />
+<rect x="470" y="504" width="34" height="34" class="cell free" />
+<rect x="504" y="504" width="34" height="34" class="cell free" />
+<rect x="538" y="504" width="34" height="34" class="cell free" />
+<rect x="28" y="538" width="34" height="34" class="cell free" />
+<rect x="62" y="538" width="34" height="34" class="cell free" />
+<rect x="96" y="538" width="34" height="34" class="cell free" />
+<rect x="130" y="538" width="34" height="34" class="cell free" />
+<rect x="164" y="538" width="34" height="34" class="cell free" />
+<rect x="198" y="538" width="34" height="34" class="cell free" />
+<rect x="232" y="538" width="34" height="34" class="cell free" />
+<rect x="266" y="538" width="34" height="34" class="cell free" />
+<rect x="300" y="538" width="34" height="34" class="cell shelf" />
+<rect x="334" y="538" width="34" height="34" class="cell free" />
+<rect x="368" y="538" width="34" height="34" class="cell free" />
+<rect x="402" y="538" width="34" height="34" class="cell shelf" />
+<rect x="436" y="538" width="34" height="34" class="cell free" />
+<rect x="470" y="538" width="34" height="34" class="cell free" />
+<rect x="504" y="538" width="34" height="34" class="cell shelf" />
+<rect x="538" y="538" width="34" height="34" class="cell free" />
+<rect x="303" y="541" width="28" height="28" rx="3" fill="#64748b" stroke="#0f172a" stroke-width="2"><title>station INBOUND</title></rect>
+<text x="317.0" y="555.0" class="label">INBOUND</text>
+<rect x="507" y="541" width="28" height="28" rx="3" fill="#64748b" stroke="#0f172a" stroke-width="2"><title>station OUTBOUND</title></rect>
+<text x="521.0" y="555.0" class="label">OUTBOUND</text>
+<rect x="405" y="541" width="28" height="28" rx="3" fill="#64748b" stroke="#0f172a" stroke-width="2"><title>station PACKING</title></rect>
+<text x="419.0" y="555.0" class="label">PACKING</text>
+<rect x="134" y="66" width="26" height="26" rx="4" class="pickup" />
+<text x="147.0" y="79.0" class="label">S1</text>
+<rect x="236" y="440" width="26" height="26" rx="4" class="pickup" />
+<text x="249.0" y="453.0" class="label">S10</text>
+<rect x="372" y="440" width="26" height="26" rx="4" class="pickup" />
+<text x="385.0" y="453.0" class="label">S11</text>
+<rect x="474" y="440" width="26" height="26" rx="4" class="pickup" />
+<text x="487.0" y="453.0" class="label">S12</text>
+<rect x="236" y="66" width="26" height="26" rx="4" class="pickup" />
+<text x="249.0" y="79.0" class="label">S2</text>
+<rect x="372" y="66" width="26" height="26" rx="4" class="pickup" />
+<text x="385.0" y="79.0" class="label">S3</text>
+<rect x="474" y="66" width="26" height="26" rx="4" class="pickup" />
+<text x="487.0" y="79.0" class="label">S4</text>
+<rect x="134" y="236" width="26" height="26" rx="4" class="pickup" />
+<text x="147.0" y="249.0" class="label">S5</text>
+<rect x="236" y="236" width="26" height="26" rx="4" class="pickup" />
+<text x="249.0" y="249.0" class="label">S6</text>
+<rect x="372" y="236" width="26" height="26" rx="4" class="pickup" />
+<text x="385.0" y="249.0" class="label">S7</text>
+<rect x="474" y="236" width="26" height="26" rx="4" class="pickup" />
+<text x="487.0" y="249.0" class="label">S8</text>
+<rect x="134" y="440" width="26" height="26" rx="4" class="pickup" />
+<text x="147.0" y="453.0" class="label">S9</text>
+<rect x="304" y="508" width="26" height="26" rx="4" class="dropoff" />
+<text x="317.0" y="521.0" class="label">INBOUND</text>
+<rect x="508" y="508" width="26" height="26" rx="4" class="dropoff" />
+<text x="521.0" y="521.0" class="label">OUTBOUND</text>
+<rect x="406" y="508" width="26" height="26" rx="4" class="dropoff" />
+<text x="419.0" y="521.0" class="label">PACKING</text>
+<text x="521.0" y="543.0" class="label">dest T001,T004,T006</text>
+<text x="419.0" y="543.0" class="label">dest T002,T005,T008</text>
+<text x="317.0" y="543.0" class="label">dest T003,T007</text>
+<polyline points="79.0,521.0 79.0,487.0 79.0,453.0 79.0,453.0 79.0,453.0 113.0,453.0 147.0,453.0 181.0,453.0 215.0,453.0 249.0,453.0 283.0,453.0 317.0,453.0 351.0,453.0 385.0,453.0 385.0,453.0 385.0,453.0 385.0,453.0 419.0,453.0 419.0,453.0 419.0,453.0 419.0,487.0 419.0,521.0 419.0,521.0 419.0,521.0 419.0,521.0 419.0,487.0 419.0,453.0 419.0,453.0 419.0,453.0 453.0,453.0 453.0,453.0 453.0,453.0 453.0,419.0 453.0,385.0 453.0,351.0 453.0,317.0 453.0,283.0 453.0,249.0 453.0,249.0 453.0,249.0 487.0,249.0 487.0,249.0 487.0,249.0 487.0,249.0 453.0,249.0 453.0,249.0 453.0,249.0 453.0,283.0 453.0,317.0 453.0,351.0 453.0,385.0 453.0,419.0 453.0,453.0 453.0,453.0 453.0,453.0 419.0,453.0 419.0,453.0 419.0,453.0 419.0,487.0 419.0,521.0 419.0,521.0 419.0,521.0 419.0,521.0 385.0,521.0 351.0,521.0 317.0,521.0 283.0,521.0 249.0,521.0 215.0,521.0 181.0,521.0 147.0,521.0 113.0,521.0 79.0,521.0" class="route" stroke="#2563eb" />
+<polyline points="113.0,521.0 113.0,487.0 113.0,453.0 113.0,453.0 113.0,453.0 147.0,453.0 181.0,453.0 215.0,453.0 249.0,453.0 249.0,453.0 249.0,453.0 249.0,453.0 283.0,453.0 317.0,453.0 351.0,453.0 351.0,453.0 351.0,453.0 351.0,487.0 351.0,487.0 351.0,487.0 385.0,487.0 419.0,487.0 453.0,487.0 487.0,487.0 521.0,487.0 521.0,487.0 521.0,487.0 521.0,521.0 521.0,521.0 521.0,521.0 521.0,521.0 521.0,487.0 521.0,453.0 521.0,453.0 521.0,453.0 487.0,453.0 453.0,453.0 453.0,453.0 453.0,453.0 453.0,419.0 453.0,385.0 453.0,351.0 453.0,317.0 453.0,283.0 453.0,283.0 453.0,249.0 453.0,215.0 453.0,181.0 453.0,147.0 453.0,113.0 453.0,79.0 453.0,79.0 453.0,79.0 419.0,79.0 385.0,79.0 385.0,79.0 385.0,79.0 385.0,79.0 351.0,79.0 351.0,79.0 351.0,79.0 351.0,113.0 351.0,147.0 351.0,181.0 351.0,215.0 351.0,249.0 351.0,283.0 351.0,317.0 351.0,351.0 351.0,385.0 351.0,419.0 351.0,453.0 351.0,453.0 351.0,453.0 385.0,453.0 419.0,453.0 419.0,453.0 419.0,453.0 419.0,487.0 419.0,521.0 419.0,521.0 419.0,521.0 419.0,521.0 385.0,521.0 351.0,521.0 317.0,521.0 283.0,521.0 249.0,521.0 215.0,521.0 181.0,521.0 147.0,521.0 113.0,521.0" class="route" stroke="#dc2626" />
+<polyline points="147.0,521.0 147.0,487.0 147.0,453.0 147.0,453.0 147.0,453.0 181.0,453.0 215.0,453.0 249.0,453.0 283.0,453.0 317.0,453.0 351.0,453.0 385.0,453.0 419.0,453.0 453.0,453.0 487.0,453.0 487.0,453.0 487.0,453.0 487.0,453.0 453.0,453.0 453.0,453.0 453.0,453.0 453.0,487.0 453.0,487.0 453.0,487.0 453.0,453.0 453.0,453.0 453.0,453.0 419.0,453.0 385.0,453.0 351.0,453.0 317.0,453.0 317.0,453.0 317.0,453.0 317.0,487.0 317.0,521.0 317.0,521.0 317.0,521.0 317.0,521.0 317.0,487.0 317.0,453.0 317.0,419.0 317.0,385.0 317.0,351.0 317.0,317.0 317.0,283.0 317.0,249.0 317.0,249.0 317.0,249.0 351.0,249.0 385.0,249.0 419.0,249.0 453.0,249.0 453.0,249.0 453.0,249.0 453.0,215.0 453.0,181.0 453.0,147.0 453.0,113.0 453.0,79.0 453.0,79.0 453.0,79.0 487.0,79.0 487.0,79.0 487.0,79.0 487.0,79.0 453.0,79.0 419.0,79.0 385.0,79.0 351.0,79.0 317.0,79.0 317.0,79.0 317.0,79.0 317.0,113.0 317.0,147.0 317.0,181.0 317.0,215.0 317.0,249.0 317.0,283.0 317.0,317.0 317.0,351.0 317.0,385.0 317.0,419.0 317.0,453.0 317.0,487.0 317.0,521.0 317.0,521.0 317.0,521.0 317.0,521.0 283.0,521.0 249.0,521.0 215.0,521.0 181.0,521.0 147.0,521.0" class="route" stroke="#16a34a" />
+<polyline points="181.0,521.0 181.0,487.0 181.0,453.0 181.0,453.0 181.0,453.0 215.0,453.0 215.0,453.0 215.0,453.0 215.0,419.0 215.0,385.0 215.0,351.0 215.0,317.0 215.0,283.0 215.0,249.0 215.0,249.0 215.0,249.0 249.0,249.0 249.0,249.0 249.0,249.0 249.0,249.0 283.0,249.0 317.0,249.0 317.0,249.0 317.0,249.0 317.0,283.0 317.0,317.0 317.0,351.0 317.0,385.0 317.0,419.0 317.0,453.0 317.0,487.0 317.0,487.0 317.0,487.0 351.0,487.0 385.0,487.0 419.0,487.0 453.0,487.0 487.0,487.0 521.0,487.0 521.0,487.0 521.0,487.0 521.0,521.0 521.0,521.0 521.0,521.0 521.0,521.0 521.0,487.0 521.0,453.0 521.0,453.0 521.0,453.0 487.0,453.0 453.0,453.0 419.0,453.0 385.0,453.0 351.0,453.0 351.0,453.0 351.0,453.0 351.0,419.0 351.0,385.0 351.0,351.0 351.0,317.0 351.0,283.0 351.0,249.0 351.0,215.0 351.0,181.0 351.0,147.0 351.0,147.0 351.0,147.0 317.0,147.0 317.0,147.0 317.0,147.0 317.0,113.0 317.0,79.0 317.0,79.0 317.0,79.0 283.0,79.0 249.0,79.0 215.0,79.0 181.0,79.0 147.0,79.0 147.0,79.0 147.0,79.0 147.0,79.0 181.0,79.0 215.0,79.0 249.0,79.0 283.0,79.0 317.0,79.0 351.0,79.0 385.0,79.0 419.0,79.0 453.0,79.0 453.0,79.0 453.0,79.0 453.0,113.0 453.0,147.0 453.0,181.0 453.0,215.0 453.0,249.0 453.0,283.0 453.0,317.0 453.0,351.0 453.0,385.0 453.0,419.0 453.0,453.0 453.0,453.0 453.0,453.0 487.0,453.0 521.0,453.0 521.0,453.0 521.0,453.0 521.0,487.0 521.0,521.0 521.0,521.0 521.0,521.0 521.0,521.0 487.0,521.0 453.0,521.0 419.0,521.0 385.0,521.0 351.0,521.0 317.0,521.0 283.0,521.0 249.0,521.0 215.0,521.0 181.0,521.0" class="route" stroke="#9333ea" />
+<circle r="9" fill="#2563eb" stroke="#111827" stroke-width="1.2"><animateMotion dur="20.00s" path="M 79.0 521.0 L 79.0 487.0 L 79.0 453.0 L 79.0 453.0 L 79.0 453.0 L 113.0 453.0 L 147.0 453.0 L 181.0 453.0 L 215.0 453.0 L 249.0 453.0 L 283.0 453.0 L 317.0 453.0 L 351.0 453.0 L 385.0 453.0 L 385.0 453.0 L 385.0 453.0 L 385.0 453.0 L 419.0 453.0 L 419.0 453.0 L 419.0 453.0 L 419.0 487.0 L 419.0 521.0 L 419.0 521.0 L 419.0 521.0 L 419.0 521.0 L 419.0 487.0 L 419.0 453.0 L 419.0 453.0 L 419.0 453.0 L 453.0 453.0 L 453.0 453.0 L 453.0 453.0 L 453.0 419.0 L 453.0 385.0 L 453.0 351.0 L 453.0 317.0 L 453.0 283.0 L 453.0 249.0 L 453.0 249.0 L 453.0 249.0 L 487.0 249.0 L 487.0 249.0 L 487.0 249.0 L 487.0 249.0 L 453.0 249.0 L 453.0 249.0 L 453.0 249.0 L 453.0 283.0 L 453.0 317.0 L 453.0 351.0 L 453.0 385.0 L 453.0 419.0 L 453.0 453.0 L 453.0 453.0 L 453.0 453.0 L 419.0 453.0 L 419.0 453.0 L 419.0 453.0 L 419.0 487.0 L 419.0 521.0 L 419.0 521.0 L 419.0 521.0 L 419.0 521.0 L 385.0 521.0 L 351.0 521.0 L 317.0 521.0 L 283.0 521.0 L 249.0 521.0 L 215.0 521.0 L 181.0 521.0 L 147.0 521.0 L 113.0 521.0 L 79.0 521.0" fill="freeze" repeatCount="indefinite" /></circle>
+<polygon points="0,-7 7,0 0,7 -7,0" fill="white" stroke="#2563eb" stroke-width="2"><animateMotion dur="20.00s" path="M 79.0 521.0 L 79.0 487.0 L 79.0 453.0 L 79.0 453.0 L 79.0 453.0 L 113.0 453.0 L 147.0 453.0 L 181.0 453.0 L 215.0 453.0 L 249.0 453.0 L 283.0 453.0 L 317.0 453.0 L 351.0 453.0 L 385.0 453.0 L 385.0 453.0 L 385.0 453.0 L 385.0 453.0 L 419.0 453.0 L 419.0 453.0 L 419.0 453.0 L 419.0 487.0 L 419.0 521.0 L 419.0 521.0 L 419.0 521.0 L 419.0 521.0 L 419.0 487.0 L 419.0 453.0 L 419.0 453.0 L 419.0 453.0 L 453.0 453.0 L 453.0 453.0 L 453.0 453.0 L 453.0 419.0 L 453.0 385.0 L 453.0 351.0 L 453.0 317.0 L 453.0 283.0 L 453.0 249.0 L 453.0 249.0 L 453.0 249.0 L 487.0 249.0 L 487.0 249.0 L 487.0 249.0 L 487.0 249.0 L 453.0 249.0 L 453.0 249.0 L 453.0 249.0 L 453.0 283.0 L 453.0 317.0 L 453.0 351.0 L 453.0 385.0 L 453.0 419.0 L 453.0 453.0 L 453.0 453.0 L 453.0 453.0 L 419.0 453.0 L 419.0 453.0 L 419.0 453.0 L 419.0 487.0 L 419.0 521.0 L 419.0 521.0 L 419.0 521.0 L 419.0 521.0 L 385.0 521.0 L 351.0 521.0 L 317.0 521.0 L 283.0 521.0 L 249.0 521.0 L 215.0 521.0 L 181.0 521.0 L 147.0 521.0 L 113.0 521.0 L 79.0 521.0" fill="freeze" repeatCount="indefinite" /><animate attributeName="opacity" dur="20.00s" repeatCount="indefinite" values="1;1;1;1;1;1;1;1;1;1;1;1;1;1;0;0;0;0;0;0;0;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;1;1;1;1;1;1;1;1;1;1;1;1;1;1" keyTimes="0.0000;0.0139;0.0278;0.0417;0.0556;0.0694;0.0833;0.0972;0.1111;0.1250;0.1389;0.1528;0.1667;0.1806;0.1944;0.2083;0.2222;0.2361;0.2500;0.2639;0.2778;0.2917;0.3056;0.3194;0.3333;0.3472;0.3611;0.3750;0.3889;0.4028;0.4167;0.4306;0.4444;0.4583;0.4722;0.4861;0.5000;0.5139;0.5278;0.5417;0.5556;0.5694;0.5833;0.5972;0.6111;0.6250;0.6389;0.6528;0.6667;0.6806;0.6944;0.7083;0.7222;0.7361;0.7500;0.7639;0.7778;0.7917;0.8056;0.8194;0.8333;0.8472;0.8611;0.8750;0.8889;0.9028;0.9167;0.9306;0.9444;0.9583;0.9722;0.9861;1.0000" /></polygon>
+<rect x="-6" y="-6" width="12" height="12" rx="2" fill="#2563eb" stroke="#111827" stroke-width="1"><animateMotion dur="20.00s" path="M 79.0 521.0 L 79.0 487.0 L 79.0 453.0 L 79.0 453.0 L 79.0 453.0 L 113.0 453.0 L 147.0 453.0 L 181.0 453.0 L 215.0 453.0 L 249.0 453.0 L 283.0 453.0 L 317.0 453.0 L 351.0 453.0 L 385.0 453.0 L 385.0 453.0 L 385.0 453.0 L 385.0 453.0 L 419.0 453.0 L 419.0 453.0 L 419.0 453.0 L 419.0 487.0 L 419.0 521.0 L 419.0 521.0 L 419.0 521.0 L 419.0 521.0 L 419.0 487.0 L 419.0 453.0 L 419.0 453.0 L 419.0 453.0 L 453.0 453.0 L 453.0 453.0 L 453.0 453.0 L 453.0 419.0 L 453.0 385.0 L 453.0 351.0 L 453.0 317.0 L 453.0 283.0 L 453.0 249.0 L 453.0 249.0 L 453.0 249.0 L 487.0 249.0 L 487.0 249.0 L 487.0 249.0 L 487.0 249.0 L 453.0 249.0 L 453.0 249.0 L 453.0 249.0 L 453.0 283.0 L 453.0 317.0 L 453.0 351.0 L 453.0 385.0 L 453.0 419.0 L 453.0 453.0 L 453.0 453.0 L 453.0 453.0 L 419.0 453.0 L 419.0 453.0 L 419.0 453.0 L 419.0 487.0 L 419.0 521.0 L 419.0 521.0 L 419.0 521.0 L 419.0 521.0 L 385.0 521.0 L 351.0 521.0 L 317.0 521.0 L 283.0 521.0 L 249.0 521.0 L 215.0 521.0 L 181.0 521.0 L 147.0 521.0 L 113.0 521.0 L 79.0 521.0" fill="freeze" repeatCount="indefinite" /><animate attributeName="opacity" dur="20.00s" repeatCount="indefinite" values="0;0;0;0;0;0;0;0;0;0;0;0;0;1;1;1;1;1;1;1;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0" keyTimes="0.0000;0.0139;0.0278;0.0417;0.0556;0.0694;0.0833;0.0972;0.1111;0.1250;0.1389;0.1528;0.1667;0.1806;0.1944;0.2083;0.2222;0.2361;0.2500;0.2639;0.2778;0.2917;0.3056;0.3194;0.3333;0.3472;0.3611;0.3750;0.3889;0.4028;0.4167;0.4306;0.4444;0.4583;0.4722;0.4861;0.5000;0.5139;0.5278;0.5417;0.5556;0.5694;0.5833;0.5972;0.6111;0.6250;0.6389;0.6528;0.6667;0.6806;0.6944;0.7083;0.7222;0.7361;0.7500;0.7639;0.7778;0.7917;0.8056;0.8194;0.8333;0.8472;0.8611;0.8750;0.8889;0.9028;0.9167;0.9306;0.9444;0.9583;0.9722;0.9861;1.0000" /><title>loaded AGV 0 carrying T008 to PACKING</title></rect>
+<rect x="-6" y="-6" width="12" height="12" rx="2" fill="#2563eb" stroke="#111827" stroke-width="1"><animateMotion dur="20.00s" path="M 79.0 521.0 L 79.0 487.0 L 79.0 453.0 L 79.0 453.0 L 79.0 453.0 L 113.0 453.0 L 147.0 453.0 L 181.0 453.0 L 215.0 453.0 L 249.0 453.0 L 283.0 453.0 L 317.0 453.0 L 351.0 453.0 L 385.0 453.0 L 385.0 453.0 L 385.0 453.0 L 385.0 453.0 L 419.0 453.0 L 419.0 453.0 L 419.0 453.0 L 419.0 487.0 L 419.0 521.0 L 419.0 521.0 L 419.0 521.0 L 419.0 521.0 L 419.0 487.0 L 419.0 453.0 L 419.0 453.0 L 419.0 453.0 L 453.0 453.0 L 453.0 453.0 L 453.0 453.0 L 453.0 419.0 L 453.0 385.0 L 453.0 351.0 L 453.0 317.0 L 453.0 283.0 L 453.0 249.0 L 453.0 249.0 L 453.0 249.0 L 487.0 249.0 L 487.0 249.0 L 487.0 249.0 L 487.0 249.0 L 453.0 249.0 L 453.0 249.0 L 453.0 249.0 L 453.0 283.0 L 453.0 317.0 L 453.0 351.0 L 453.0 385.0 L 453.0 419.0 L 453.0 453.0 L 453.0 453.0 L 453.0 453.0 L 419.0 453.0 L 419.0 453.0 L 419.0 453.0 L 419.0 487.0 L 419.0 521.0 L 419.0 521.0 L 419.0 521.0 L 419.0 521.0 L 385.0 521.0 L 351.0 521.0 L 317.0 521.0 L 283.0 521.0 L 249.0 521.0 L 215.0 521.0 L 181.0 521.0 L 147.0 521.0 L 113.0 521.0 L 79.0 521.0" fill="freeze" repeatCount="indefinite" /><animate attributeName="opacity" dur="20.00s" repeatCount="indefinite" values="0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0" keyTimes="0.0000;0.0139;0.0278;0.0417;0.0556;0.0694;0.0833;0.0972;0.1111;0.1250;0.1389;0.1528;0.1667;0.1806;0.1944;0.2083;0.2222;0.2361;0.2500;0.2639;0.2778;0.2917;0.3056;0.3194;0.3333;0.3472;0.3611;0.3750;0.3889;0.4028;0.4167;0.4306;0.4444;0.4583;0.4722;0.4861;0.5000;0.5139;0.5278;0.5417;0.5556;0.5694;0.5833;0.5972;0.6111;0.6250;0.6389;0.6528;0.6667;0.6806;0.6944;0.7083;0.7222;0.7361;0.7500;0.7639;0.7778;0.7917;0.8056;0.8194;0.8333;0.8472;0.8611;0.8750;0.8889;0.9028;0.9167;0.9306;0.9444;0.9583;0.9722;0.9861;1.0000" /><title>loaded AGV 0 carrying T005 to PACKING</title></rect>
+<circle r="9" fill="#dc2626" stroke="#111827" stroke-width="1.2"><animateMotion dur="20.00s" path="M 113.0 521.0 L 113.0 487.0 L 113.0 453.0 L 113.0 453.0 L 113.0 453.0 L 147.0 453.0 L 181.0 453.0 L 215.0 453.0 L 249.0 453.0 L 249.0 453.0 L 249.0 453.0 L 249.0 453.0 L 283.0 453.0 L 317.0 453.0 L 351.0 453.0 L 351.0 453.0 L 351.0 453.0 L 351.0 487.0 L 351.0 487.0 L 351.0 487.0 L 385.0 487.0 L 419.0 487.0 L 453.0 487.0 L 487.0 487.0 L 521.0 487.0 L 521.0 487.0 L 521.0 487.0 L 521.0 521.0 L 521.0 521.0 L 521.0 521.0 L 521.0 521.0 L 521.0 487.0 L 521.0 453.0 L 521.0 453.0 L 521.0 453.0 L 487.0 453.0 L 453.0 453.0 L 453.0 453.0 L 453.0 453.0 L 453.0 419.0 L 453.0 385.0 L 453.0 351.0 L 453.0 317.0 L 453.0 283.0 L 453.0 283.0 L 453.0 249.0 L 453.0 215.0 L 453.0 181.0 L 453.0 147.0 L 453.0 113.0 L 453.0 79.0 L 453.0 79.0 L 453.0 79.0 L 419.0 79.0 L 385.0 79.0 L 385.0 79.0 L 385.0 79.0 L 385.0 79.0 L 351.0 79.0 L 351.0 79.0 L 351.0 79.0 L 351.0 113.0 L 351.0 147.0 L 351.0 181.0 L 351.0 215.0 L 351.0 249.0 L 351.0 283.0 L 351.0 317.0 L 351.0 351.0 L 351.0 385.0 L 351.0 419.0 L 351.0 453.0 L 351.0 453.0 L 351.0 453.0 L 385.0 453.0 L 419.0 453.0 L 419.0 453.0 L 419.0 453.0 L 419.0 487.0 L 419.0 521.0 L 419.0 521.0 L 419.0 521.0 L 419.0 521.0 L 385.0 521.0 L 351.0 521.0 L 317.0 521.0 L 283.0 521.0 L 249.0 521.0 L 215.0 521.0 L 181.0 521.0 L 147.0 521.0 L 113.0 521.0" fill="freeze" repeatCount="indefinite" /></circle>
+<polygon points="0,-7 7,0 0,7 -7,0" fill="white" stroke="#dc2626" stroke-width="2"><animateMotion dur="20.00s" path="M 113.0 521.0 L 113.0 487.0 L 113.0 453.0 L 113.0 453.0 L 113.0 453.0 L 147.0 453.0 L 181.0 453.0 L 215.0 453.0 L 249.0 453.0 L 249.0 453.0 L 249.0 453.0 L 249.0 453.0 L 283.0 453.0 L 317.0 453.0 L 351.0 453.0 L 351.0 453.0 L 351.0 453.0 L 351.0 487.0 L 351.0 487.0 L 351.0 487.0 L 385.0 487.0 L 419.0 487.0 L 453.0 487.0 L 487.0 487.0 L 521.0 487.0 L 521.0 487.0 L 521.0 487.0 L 521.0 521.0 L 521.0 521.0 L 521.0 521.0 L 521.0 521.0 L 521.0 487.0 L 521.0 453.0 L 521.0 453.0 L 521.0 453.0 L 487.0 453.0 L 453.0 453.0 L 453.0 453.0 L 453.0 453.0 L 453.0 419.0 L 453.0 385.0 L 453.0 351.0 L 453.0 317.0 L 453.0 283.0 L 453.0 283.0 L 453.0 249.0 L 453.0 215.0 L 453.0 181.0 L 453.0 147.0 L 453.0 113.0 L 453.0 79.0 L 453.0 79.0 L 453.0 79.0 L 419.0 79.0 L 385.0 79.0 L 385.0 79.0 L 385.0 79.0 L 385.0 79.0 L 351.0 79.0 L 351.0 79.0 L 351.0 79.0 L 351.0 113.0 L 351.0 147.0 L 351.0 181.0 L 351.0 215.0 L 351.0 249.0 L 351.0 283.0 L 351.0 317.0 L 351.0 351.0 L 351.0 385.0 L 351.0 419.0 L 351.0 453.0 L 351.0 453.0 L 351.0 453.0 L 385.0 453.0 L 419.0 453.0 L 419.0 453.0 L 419.0 453.0 L 419.0 487.0 L 419.0 521.0 L 419.0 521.0 L 419.0 521.0 L 419.0 521.0 L 385.0 521.0 L 351.0 521.0 L 317.0 521.0 L 283.0 521.0 L 249.0 521.0 L 215.0 521.0 L 181.0 521.0 L 147.0 521.0 L 113.0 521.0" fill="freeze" repeatCount="indefinite" /><animate attributeName="opacity" dur="20.00s" repeatCount="indefinite" values="1;1;1;1;1;1;1;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;1;1;1;1;1;1;1;1;1;1;1;1;1" keyTimes="0.0000;0.0110;0.0220;0.0330;0.0440;0.0549;0.0659;0.0769;0.0879;0.0989;0.1099;0.1209;0.1319;0.1429;0.1538;0.1648;0.1758;0.1868;0.1978;0.2088;0.2198;0.2308;0.2418;0.2527;0.2637;0.2747;0.2857;0.2967;0.3077;0.3187;0.3297;0.3407;0.3516;0.3626;0.3736;0.3846;0.3956;0.4066;0.4176;0.4286;0.4396;0.4505;0.4615;0.4725;0.4835;0.4945;0.5055;0.5165;0.5275;0.5385;0.5495;0.5604;0.5714;0.5824;0.5934;0.6044;0.6154;0.6264;0.6374;0.6484;0.6593;0.6703;0.6813;0.6923;0.7033;0.7143;0.7253;0.7363;0.7473;0.7582;0.7692;0.7802;0.7912;0.8022;0.8132;0.8242;0.8352;0.8462;0.8571;0.8681;0.8791;0.8901;0.9011;0.9121;0.9231;0.9341;0.9451;0.9560;0.9670;0.9780;0.9890;1.0000" /></polygon>
+<rect x="-6" y="-6" width="12" height="12" rx="2" fill="#dc2626" stroke="#111827" stroke-width="1"><animateMotion dur="20.00s" path="M 113.0 521.0 L 113.0 487.0 L 113.0 453.0 L 113.0 453.0 L 113.0 453.0 L 147.0 453.0 L 181.0 453.0 L 215.0 453.0 L 249.0 453.0 L 249.0 453.0 L 249.0 453.0 L 249.0 453.0 L 283.0 453.0 L 317.0 453.0 L 351.0 453.0 L 351.0 453.0 L 351.0 453.0 L 351.0 487.0 L 351.0 487.0 L 351.0 487.0 L 385.0 487.0 L 419.0 487.0 L 453.0 487.0 L 487.0 487.0 L 521.0 487.0 L 521.0 487.0 L 521.0 487.0 L 521.0 521.0 L 521.0 521.0 L 521.0 521.0 L 521.0 521.0 L 521.0 487.0 L 521.0 453.0 L 521.0 453.0 L 521.0 453.0 L 487.0 453.0 L 453.0 453.0 L 453.0 453.0 L 453.0 453.0 L 453.0 419.0 L 453.0 385.0 L 453.0 351.0 L 453.0 317.0 L 453.0 283.0 L 453.0 283.0 L 453.0 249.0 L 453.0 215.0 L 453.0 181.0 L 453.0 147.0 L 453.0 113.0 L 453.0 79.0 L 453.0 79.0 L 453.0 79.0 L 419.0 79.0 L 385.0 79.0 L 385.0 79.0 L 385.0 79.0 L 385.0 79.0 L 351.0 79.0 L 351.0 79.0 L 351.0 79.0 L 351.0 113.0 L 351.0 147.0 L 351.0 181.0 L 351.0 215.0 L 351.0 249.0 L 351.0 283.0 L 351.0 317.0 L 351.0 351.0 L 351.0 385.0 L 351.0 419.0 L 351.0 453.0 L 351.0 453.0 L 351.0 453.0 L 385.0 453.0 L 419.0 453.0 L 419.0 453.0 L 419.0 453.0 L 419.0 487.0 L 419.0 521.0 L 419.0 521.0 L 419.0 521.0 L 419.0 521.0 L 385.0 521.0 L 351.0 521.0 L 317.0 521.0 L 283.0 521.0 L 249.0 521.0 L 215.0 521.0 L 181.0 521.0 L 147.0 521.0 L 113.0 521.0" fill="freeze" repeatCount="indefinite" /><animate attributeName="opacity" dur="20.00s" repeatCount="indefinite" values="0;0;0;0;0;0;0;0;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0" keyTimes="0.0000;0.0110;0.0220;0.0330;0.0440;0.0549;0.0659;0.0769;0.0879;0.0989;0.1099;0.1209;0.1319;0.1429;0.1538;0.1648;0.1758;0.1868;0.1978;0.2088;0.2198;0.2308;0.2418;0.2527;0.2637;0.2747;0.2857;0.2967;0.3077;0.3187;0.3297;0.3407;0.3516;0.3626;0.3736;0.3846;0.3956;0.4066;0.4176;0.4286;0.4396;0.4505;0.4615;0.4725;0.4835;0.4945;0.5055;0.5165;0.5275;0.5385;0.5495;0.5604;0.5714;0.5824;0.5934;0.6044;0.6154;0.6264;0.6374;0.6484;0.6593;0.6703;0.6813;0.6923;0.7033;0.7143;0.7253;0.7363;0.7473;0.7582;0.7692;0.7802;0.7912;0.8022;0.8132;0.8242;0.8352;0.8462;0.8571;0.8681;0.8791;0.8901;0.9011;0.9121;0.9231;0.9341;0.9451;0.9560;0.9670;0.9780;0.9890;1.0000" /><title>loaded AGV 1 carrying T006 to OUTBOUND</title></rect>
+<rect x="-6" y="-6" width="12" height="12" rx="2" fill="#dc2626" stroke="#111827" stroke-width="1"><animateMotion dur="20.00s" path="M 113.0 521.0 L 113.0 487.0 L 113.0 453.0 L 113.0 453.0 L 113.0 453.0 L 147.0 453.0 L 181.0 453.0 L 215.0 453.0 L 249.0 453.0 L 249.0 453.0 L 249.0 453.0 L 249.0 453.0 L 283.0 453.0 L 317.0 453.0 L 351.0 453.0 L 351.0 453.0 L 351.0 453.0 L 351.0 487.0 L 351.0 487.0 L 351.0 487.0 L 385.0 487.0 L 419.0 487.0 L 453.0 487.0 L 487.0 487.0 L 521.0 487.0 L 521.0 487.0 L 521.0 487.0 L 521.0 521.0 L 521.0 521.0 L 521.0 521.0 L 521.0 521.0 L 521.0 487.0 L 521.0 453.0 L 521.0 453.0 L 521.0 453.0 L 487.0 453.0 L 453.0 453.0 L 453.0 453.0 L 453.0 453.0 L 453.0 419.0 L 453.0 385.0 L 453.0 351.0 L 453.0 317.0 L 453.0 283.0 L 453.0 283.0 L 453.0 249.0 L 453.0 215.0 L 453.0 181.0 L 453.0 147.0 L 453.0 113.0 L 453.0 79.0 L 453.0 79.0 L 453.0 79.0 L 419.0 79.0 L 385.0 79.0 L 385.0 79.0 L 385.0 79.0 L 385.0 79.0 L 351.0 79.0 L 351.0 79.0 L 351.0 79.0 L 351.0 113.0 L 351.0 147.0 L 351.0 181.0 L 351.0 215.0 L 351.0 249.0 L 351.0 283.0 L 351.0 317.0 L 351.0 351.0 L 351.0 385.0 L 351.0 419.0 L 351.0 453.0 L 351.0 453.0 L 351.0 453.0 L 385.0 453.0 L 419.0 453.0 L 419.0 453.0 L 419.0 453.0 L 419.0 487.0 L 419.0 521.0 L 419.0 521.0 L 419.0 521.0 L 419.0 521.0 L 385.0 521.0 L 351.0 521.0 L 317.0 521.0 L 283.0 521.0 L 249.0 521.0 L 215.0 521.0 L 181.0 521.0 L 147.0 521.0 L 113.0 521.0" fill="freeze" repeatCount="indefinite" /><animate attributeName="opacity" dur="20.00s" repeatCount="indefinite" values="0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;0;0;0;0;0;0;0;0;0;0;0;0" keyTimes="0.0000;0.0110;0.0220;0.0330;0.0440;0.0549;0.0659;0.0769;0.0879;0.0989;0.1099;0.1209;0.1319;0.1429;0.1538;0.1648;0.1758;0.1868;0.1978;0.2088;0.2198;0.2308;0.2418;0.2527;0.2637;0.2747;0.2857;0.2967;0.3077;0.3187;0.3297;0.3407;0.3516;0.3626;0.3736;0.3846;0.3956;0.4066;0.4176;0.4286;0.4396;0.4505;0.4615;0.4725;0.4835;0.4945;0.5055;0.5165;0.5275;0.5385;0.5495;0.5604;0.5714;0.5824;0.5934;0.6044;0.6154;0.6264;0.6374;0.6484;0.6593;0.6703;0.6813;0.6923;0.7033;0.7143;0.7253;0.7363;0.7473;0.7582;0.7692;0.7802;0.7912;0.8022;0.8132;0.8242;0.8352;0.8462;0.8571;0.8681;0.8791;0.8901;0.9011;0.9121;0.9231;0.9341;0.9451;0.9560;0.9670;0.9780;0.9890;1.0000" /><title>loaded AGV 1 carrying T002 to PACKING</title></rect>
+<circle r="9" fill="#16a34a" stroke="#111827" stroke-width="1.2"><animateMotion dur="20.00s" path="M 147.0 521.0 L 147.0 487.0 L 147.0 453.0 L 147.0 453.0 L 147.0 453.0 L 181.0 453.0 L 215.0 453.0 L 249.0 453.0 L 283.0 453.0 L 317.0 453.0 L 351.0 453.0 L 385.0 453.0 L 419.0 453.0 L 453.0 453.0 L 487.0 453.0 L 487.0 453.0 L 487.0 453.0 L 487.0 453.0 L 453.0 453.0 L 453.0 453.0 L 453.0 453.0 L 453.0 487.0 L 453.0 487.0 L 453.0 487.0 L 453.0 453.0 L 453.0 453.0 L 453.0 453.0 L 419.0 453.0 L 385.0 453.0 L 351.0 453.0 L 317.0 453.0 L 317.0 453.0 L 317.0 453.0 L 317.0 487.0 L 317.0 521.0 L 317.0 521.0 L 317.0 521.0 L 317.0 521.0 L 317.0 487.0 L 317.0 453.0 L 317.0 419.0 L 317.0 385.0 L 317.0 351.0 L 317.0 317.0 L 317.0 283.0 L 317.0 249.0 L 317.0 249.0 L 317.0 249.0 L 351.0 249.0 L 385.0 249.0 L 419.0 249.0 L 453.0 249.0 L 453.0 249.0 L 453.0 249.0 L 453.0 215.0 L 453.0 181.0 L 453.0 147.0 L 453.0 113.0 L 453.0 79.0 L 453.0 79.0 L 453.0 79.0 L 487.0 79.0 L 487.0 79.0 L 487.0 79.0 L 487.0 79.0 L 453.0 79.0 L 419.0 79.0 L 385.0 79.0 L 351.0 79.0 L 317.0 79.0 L 317.0 79.0 L 317.0 79.0 L 317.0 113.0 L 317.0 147.0 L 317.0 181.0 L 317.0 215.0 L 317.0 249.0 L 317.0 283.0 L 317.0 317.0 L 317.0 351.0 L 317.0 385.0 L 317.0 419.0 L 317.0 453.0 L 317.0 487.0 L 317.0 521.0 L 317.0 521.0 L 317.0 521.0 L 317.0 521.0 L 283.0 521.0 L 249.0 521.0 L 215.0 521.0 L 181.0 521.0 L 147.0 521.0" fill="freeze" repeatCount="indefinite" /></circle>
+<polygon points="0,-7 7,0 0,7 -7,0" fill="white" stroke="#16a34a" stroke-width="2"><animateMotion dur="20.00s" path="M 147.0 521.0 L 147.0 487.0 L 147.0 453.0 L 147.0 453.0 L 147.0 453.0 L 181.0 453.0 L 215.0 453.0 L 249.0 453.0 L 283.0 453.0 L 317.0 453.0 L 351.0 453.0 L 385.0 453.0 L 419.0 453.0 L 453.0 453.0 L 487.0 453.0 L 487.0 453.0 L 487.0 453.0 L 487.0 453.0 L 453.0 453.0 L 453.0 453.0 L 453.0 453.0 L 453.0 487.0 L 453.0 487.0 L 453.0 487.0 L 453.0 453.0 L 453.0 453.0 L 453.0 453.0 L 419.0 453.0 L 385.0 453.0 L 351.0 453.0 L 317.0 453.0 L 317.0 453.0 L 317.0 453.0 L 317.0 487.0 L 317.0 521.0 L 317.0 521.0 L 317.0 521.0 L 317.0 521.0 L 317.0 487.0 L 317.0 453.0 L 317.0 419.0 L 317.0 385.0 L 317.0 351.0 L 317.0 317.0 L 317.0 283.0 L 317.0 249.0 L 317.0 249.0 L 317.0 249.0 L 351.0 249.0 L 385.0 249.0 L 419.0 249.0 L 453.0 249.0 L 453.0 249.0 L 453.0 249.0 L 453.0 215.0 L 453.0 181.0 L 453.0 147.0 L 453.0 113.0 L 453.0 79.0 L 453.0 79.0 L 453.0 79.0 L 487.0 79.0 L 487.0 79.0 L 487.0 79.0 L 487.0 79.0 L 453.0 79.0 L 419.0 79.0 L 385.0 79.0 L 351.0 79.0 L 317.0 79.0 L 317.0 79.0 L 317.0 79.0 L 317.0 113.0 L 317.0 147.0 L 317.0 181.0 L 317.0 215.0 L 317.0 249.0 L 317.0 283.0 L 317.0 317.0 L 317.0 351.0 L 317.0 385.0 L 317.0 419.0 L 317.0 453.0 L 317.0 487.0 L 317.0 521.0 L 317.0 521.0 L 317.0 521.0 L 317.0 521.0 L 283.0 521.0 L 249.0 521.0 L 215.0 521.0 L 181.0 521.0 L 147.0 521.0" fill="freeze" repeatCount="indefinite" /><animate attributeName="opacity" dur="20.00s" repeatCount="indefinite" values="1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;1;1;1;1;1;1;1;1;1" keyTimes="0.0000;0.0109;0.0217;0.0326;0.0435;0.0543;0.0652;0.0761;0.0870;0.0978;0.1087;0.1196;0.1304;0.1413;0.1522;0.1630;0.1739;0.1848;0.1957;0.2065;0.2174;0.2283;0.2391;0.2500;0.2609;0.2717;0.2826;0.2935;0.3043;0.3152;0.3261;0.3370;0.3478;0.3587;0.3696;0.3804;0.3913;0.4022;0.4130;0.4239;0.4348;0.4457;0.4565;0.4674;0.4783;0.4891;0.5000;0.5109;0.5217;0.5326;0.5435;0.5543;0.5652;0.5761;0.5870;0.5978;0.6087;0.6196;0.6304;0.6413;0.6522;0.6630;0.6739;0.6848;0.6957;0.7065;0.7174;0.7283;0.7391;0.7500;0.7609;0.7717;0.7826;0.7935;0.8043;0.8152;0.8261;0.8370;0.8478;0.8587;0.8696;0.8804;0.8913;0.9022;0.9130;0.9239;0.9348;0.9457;0.9565;0.9674;0.9783;0.9891;1.0000" /></polygon>
+<rect x="-6" y="-6" width="12" height="12" rx="2" fill="#16a34a" stroke="#111827" stroke-width="1"><animateMotion dur="20.00s" path="M 147.0 521.0 L 147.0 487.0 L 147.0 453.0 L 147.0 453.0 L 147.0 453.0 L 181.0 453.0 L 215.0 453.0 L 249.0 453.0 L 283.0 453.0 L 317.0 453.0 L 351.0 453.0 L 385.0 453.0 L 419.0 453.0 L 453.0 453.0 L 487.0 453.0 L 487.0 453.0 L 487.0 453.0 L 487.0 453.0 L 453.0 453.0 L 453.0 453.0 L 453.0 453.0 L 453.0 487.0 L 453.0 487.0 L 453.0 487.0 L 453.0 453.0 L 453.0 453.0 L 453.0 453.0 L 419.0 453.0 L 385.0 453.0 L 351.0 453.0 L 317.0 453.0 L 317.0 453.0 L 317.0 453.0 L 317.0 487.0 L 317.0 521.0 L 317.0 521.0 L 317.0 521.0 L 317.0 521.0 L 317.0 487.0 L 317.0 453.0 L 317.0 419.0 L 317.0 385.0 L 317.0 351.0 L 317.0 317.0 L 317.0 283.0 L 317.0 249.0 L 317.0 249.0 L 317.0 249.0 L 351.0 249.0 L 385.0 249.0 L 419.0 249.0 L 453.0 249.0 L 453.0 249.0 L 453.0 249.0 L 453.0 215.0 L 453.0 181.0 L 453.0 147.0 L 453.0 113.0 L 453.0 79.0 L 453.0 79.0 L 453.0 79.0 L 487.0 79.0 L 487.0 79.0 L 487.0 79.0 L 487.0 79.0 L 453.0 79.0 L 419.0 79.0 L 385.0 79.0 L 351.0 79.0 L 317.0 79.0 L 317.0 79.0 L 317.0 79.0 L 317.0 113.0 L 317.0 147.0 L 317.0 181.0 L 317.0 215.0 L 317.0 249.0 L 317.0 283.0 L 317.0 317.0 L 317.0 351.0 L 317.0 385.0 L 317.0 419.0 L 317.0 453.0 L 317.0 487.0 L 317.0 521.0 L 317.0 521.0 L 317.0 521.0 L 317.0 521.0 L 283.0 521.0 L 249.0 521.0 L 215.0 521.0 L 181.0 521.0 L 147.0 521.0" fill="freeze" repeatCount="indefinite" /><animate attributeName="opacity" dur="20.00s" repeatCount="indefinite" values="0;0;0;0;0;0;0;0;0;0;0;0;0;0;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0" keyTimes="0.0000;0.0109;0.0217;0.0326;0.0435;0.0543;0.0652;0.0761;0.0870;0.0978;0.1087;0.1196;0.1304;0.1413;0.1522;0.1630;0.1739;0.1848;0.1957;0.2065;0.2174;0.2283;0.2391;0.2500;0.2609;0.2717;0.2826;0.2935;0.3043;0.3152;0.3261;0.3370;0.3478;0.3587;0.3696;0.3804;0.3913;0.4022;0.4130;0.4239;0.4348;0.4457;0.4565;0.4674;0.4783;0.4891;0.5000;0.5109;0.5217;0.5326;0.5435;0.5543;0.5652;0.5761;0.5870;0.5978;0.6087;0.6196;0.6304;0.6413;0.6522;0.6630;0.6739;0.6848;0.6957;0.7065;0.7174;0.7283;0.7391;0.7500;0.7609;0.7717;0.7826;0.7935;0.8043;0.8152;0.8261;0.8370;0.8478;0.8587;0.8696;0.8804;0.8913;0.9022;0.9130;0.9239;0.9348;0.9457;0.9565;0.9674;0.9783;0.9891;1.0000" /><title>loaded AGV 2 carrying T003 to INBOUND</title></rect>
+<rect x="-6" y="-6" width="12" height="12" rx="2" fill="#16a34a" stroke="#111827" stroke-width="1"><animateMotion dur="20.00s" path="M 147.0 521.0 L 147.0 487.0 L 147.0 453.0 L 147.0 453.0 L 147.0 453.0 L 181.0 453.0 L 215.0 453.0 L 249.0 453.0 L 283.0 453.0 L 317.0 453.0 L 351.0 453.0 L 385.0 453.0 L 419.0 453.0 L 453.0 453.0 L 487.0 453.0 L 487.0 453.0 L 487.0 453.0 L 487.0 453.0 L 453.0 453.0 L 453.0 453.0 L 453.0 453.0 L 453.0 487.0 L 453.0 487.0 L 453.0 487.0 L 453.0 453.0 L 453.0 453.0 L 453.0 453.0 L 419.0 453.0 L 385.0 453.0 L 351.0 453.0 L 317.0 453.0 L 317.0 453.0 L 317.0 453.0 L 317.0 487.0 L 317.0 521.0 L 317.0 521.0 L 317.0 521.0 L 317.0 521.0 L 317.0 487.0 L 317.0 453.0 L 317.0 419.0 L 317.0 385.0 L 317.0 351.0 L 317.0 317.0 L 317.0 283.0 L 317.0 249.0 L 317.0 249.0 L 317.0 249.0 L 351.0 249.0 L 385.0 249.0 L 419.0 249.0 L 453.0 249.0 L 453.0 249.0 L 453.0 249.0 L 453.0 215.0 L 453.0 181.0 L 453.0 147.0 L 453.0 113.0 L 453.0 79.0 L 453.0 79.0 L 453.0 79.0 L 487.0 79.0 L 487.0 79.0 L 487.0 79.0 L 487.0 79.0 L 453.0 79.0 L 419.0 79.0 L 385.0 79.0 L 351.0 79.0 L 317.0 79.0 L 317.0 79.0 L 317.0 79.0 L 317.0 113.0 L 317.0 147.0 L 317.0 181.0 L 317.0 215.0 L 317.0 249.0 L 317.0 283.0 L 317.0 317.0 L 317.0 351.0 L 317.0 385.0 L 317.0 419.0 L 317.0 453.0 L 317.0 487.0 L 317.0 521.0 L 317.0 521.0 L 317.0 521.0 L 317.0 521.0 L 283.0 521.0 L 249.0 521.0 L 215.0 521.0 L 181.0 521.0 L 147.0 521.0" fill="freeze" repeatCount="indefinite" /><animate attributeName="opacity" dur="20.00s" repeatCount="indefinite" values="0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;0;0;0;0;0;0;0;0" keyTimes="0.0000;0.0109;0.0217;0.0326;0.0435;0.0543;0.0652;0.0761;0.0870;0.0978;0.1087;0.1196;0.1304;0.1413;0.1522;0.1630;0.1739;0.1848;0.1957;0.2065;0.2174;0.2283;0.2391;0.2500;0.2609;0.2717;0.2826;0.2935;0.3043;0.3152;0.3261;0.3370;0.3478;0.3587;0.3696;0.3804;0.3913;0.4022;0.4130;0.4239;0.4348;0.4457;0.4565;0.4674;0.4783;0.4891;0.5000;0.5109;0.5217;0.5326;0.5435;0.5543;0.5652;0.5761;0.5870;0.5978;0.6087;0.6196;0.6304;0.6413;0.6522;0.6630;0.6739;0.6848;0.6957;0.7065;0.7174;0.7283;0.7391;0.7500;0.7609;0.7717;0.7826;0.7935;0.8043;0.8152;0.8261;0.8370;0.8478;0.8587;0.8696;0.8804;0.8913;0.9022;0.9130;0.9239;0.9348;0.9457;0.9565;0.9674;0.9783;0.9891;1.0000" /><title>loaded AGV 2 carrying T007 to INBOUND</title></rect>
+<circle r="9" fill="#9333ea" stroke="#111827" stroke-width="1.2"><animateMotion dur="20.00s" path="M 181.0 521.0 L 181.0 487.0 L 181.0 453.0 L 181.0 453.0 L 181.0 453.0 L 215.0 453.0 L 215.0 453.0 L 215.0 453.0 L 215.0 419.0 L 215.0 385.0 L 215.0 351.0 L 215.0 317.0 L 215.0 283.0 L 215.0 249.0 L 215.0 249.0 L 215.0 249.0 L 249.0 249.0 L 249.0 249.0 L 249.0 249.0 L 249.0 249.0 L 283.0 249.0 L 317.0 249.0 L 317.0 249.0 L 317.0 249.0 L 317.0 283.0 L 317.0 317.0 L 317.0 351.0 L 317.0 385.0 L 317.0 419.0 L 317.0 453.0 L 317.0 487.0 L 317.0 487.0 L 317.0 487.0 L 351.0 487.0 L 385.0 487.0 L 419.0 487.0 L 453.0 487.0 L 487.0 487.0 L 521.0 487.0 L 521.0 487.0 L 521.0 487.0 L 521.0 521.0 L 521.0 521.0 L 521.0 521.0 L 521.0 521.0 L 521.0 487.0 L 521.0 453.0 L 521.0 453.0 L 521.0 453.0 L 487.0 453.0 L 453.0 453.0 L 419.0 453.0 L 385.0 453.0 L 351.0 453.0 L 351.0 453.0 L 351.0 453.0 L 351.0 419.0 L 351.0 385.0 L 351.0 351.0 L 351.0 317.0 L 351.0 283.0 L 351.0 249.0 L 351.0 215.0 L 351.0 181.0 L 351.0 147.0 L 351.0 147.0 L 351.0 147.0 L 317.0 147.0 L 317.0 147.0 L 317.0 147.0 L 317.0 113.0 L 317.0 79.0 L 317.0 79.0 L 317.0 79.0 L 283.0 79.0 L 249.0 79.0 L 215.0 79.0 L 181.0 79.0 L 147.0 79.0 L 147.0 79.0 L 147.0 79.0 L 147.0 79.0 L 181.0 79.0 L 215.0 79.0 L 249.0 79.0 L 283.0 79.0 L 317.0 79.0 L 351.0 79.0 L 385.0 79.0 L 419.0 79.0 L 453.0 79.0 L 453.0 79.0 L 453.0 79.0 L 453.0 113.0 L 453.0 147.0 L 453.0 181.0 L 453.0 215.0 L 453.0 249.0 L 453.0 283.0 L 453.0 317.0 L 453.0 351.0 L 453.0 385.0 L 453.0 419.0 L 453.0 453.0 L 453.0 453.0 L 453.0 453.0 L 487.0 453.0 L 521.0 453.0 L 521.0 453.0 L 521.0 453.0 L 521.0 487.0 L 521.0 521.0 L 521.0 521.0 L 521.0 521.0 L 521.0 521.0 L 487.0 521.0 L 453.0 521.0 L 419.0 521.0 L 385.0 521.0 L 351.0 521.0 L 317.0 521.0 L 283.0 521.0 L 249.0 521.0 L 215.0 521.0 L 181.0 521.0" fill="freeze" repeatCount="indefinite" /></circle>
+<polygon points="0,-7 7,0 0,7 -7,0" fill="white" stroke="#9333ea" stroke-width="2"><animateMotion dur="20.00s" path="M 181.0 521.0 L 181.0 487.0 L 181.0 453.0 L 181.0 453.0 L 181.0 453.0 L 215.0 453.0 L 215.0 453.0 L 215.0 453.0 L 215.0 419.0 L 215.0 385.0 L 215.0 351.0 L 215.0 317.0 L 215.0 283.0 L 215.0 249.0 L 215.0 249.0 L 215.0 249.0 L 249.0 249.0 L 249.0 249.0 L 249.0 249.0 L 249.0 249.0 L 283.0 249.0 L 317.0 249.0 L 317.0 249.0 L 317.0 249.0 L 317.0 283.0 L 317.0 317.0 L 317.0 351.0 L 317.0 385.0 L 317.0 419.0 L 317.0 453.0 L 317.0 487.0 L 317.0 487.0 L 317.0 487.0 L 351.0 487.0 L 385.0 487.0 L 419.0 487.0 L 453.0 487.0 L 487.0 487.0 L 521.0 487.0 L 521.0 487.0 L 521.0 487.0 L 521.0 521.0 L 521.0 521.0 L 521.0 521.0 L 521.0 521.0 L 521.0 487.0 L 521.0 453.0 L 521.0 453.0 L 521.0 453.0 L 487.0 453.0 L 453.0 453.0 L 419.0 453.0 L 385.0 453.0 L 351.0 453.0 L 351.0 453.0 L 351.0 453.0 L 351.0 419.0 L 351.0 385.0 L 351.0 351.0 L 351.0 317.0 L 351.0 283.0 L 351.0 249.0 L 351.0 215.0 L 351.0 181.0 L 351.0 147.0 L 351.0 147.0 L 351.0 147.0 L 317.0 147.0 L 317.0 147.0 L 317.0 147.0 L 317.0 113.0 L 317.0 79.0 L 317.0 79.0 L 317.0 79.0 L 283.0 79.0 L 249.0 79.0 L 215.0 79.0 L 181.0 79.0 L 147.0 79.0 L 147.0 79.0 L 147.0 79.0 L 147.0 79.0 L 181.0 79.0 L 215.0 79.0 L 249.0 79.0 L 283.0 79.0 L 317.0 79.0 L 351.0 79.0 L 385.0 79.0 L 419.0 79.0 L 453.0 79.0 L 453.0 79.0 L 453.0 79.0 L 453.0 113.0 L 453.0 147.0 L 453.0 181.0 L 453.0 215.0 L 453.0 249.0 L 453.0 283.0 L 453.0 317.0 L 453.0 351.0 L 453.0 385.0 L 453.0 419.0 L 453.0 453.0 L 453.0 453.0 L 453.0 453.0 L 487.0 453.0 L 521.0 453.0 L 521.0 453.0 L 521.0 453.0 L 521.0 487.0 L 521.0 521.0 L 521.0 521.0 L 521.0 521.0 L 521.0 521.0 L 487.0 521.0 L 453.0 521.0 L 419.0 521.0 L 385.0 521.0 L 351.0 521.0 L 317.0 521.0 L 283.0 521.0 L 249.0 521.0 L 215.0 521.0 L 181.0 521.0" fill="freeze" repeatCount="indefinite" /><animate attributeName="opacity" dur="20.00s" repeatCount="indefinite" values="1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;1;1;1;1;1;1;1;1;1;1;1;1;1;1" keyTimes="0.0000;0.0081;0.0161;0.0242;0.0323;0.0403;0.0484;0.0565;0.0645;0.0726;0.0806;0.0887;0.0968;0.1048;0.1129;0.1210;0.1290;0.1371;0.1452;0.1532;0.1613;0.1694;0.1774;0.1855;0.1935;0.2016;0.2097;0.2177;0.2258;0.2339;0.2419;0.2500;0.2581;0.2661;0.2742;0.2823;0.2903;0.2984;0.3065;0.3145;0.3226;0.3306;0.3387;0.3468;0.3548;0.3629;0.3710;0.3790;0.3871;0.3952;0.4032;0.4113;0.4194;0.4274;0.4355;0.4435;0.4516;0.4597;0.4677;0.4758;0.4839;0.4919;0.5000;0.5081;0.5161;0.5242;0.5323;0.5403;0.5484;0.5565;0.5645;0.5726;0.5806;0.5887;0.5968;0.6048;0.6129;0.6210;0.6290;0.6371;0.6452;0.6532;0.6613;0.6694;0.6774;0.6855;0.6935;0.7016;0.7097;0.7177;0.7258;0.7339;0.7419;0.7500;0.7581;0.7661;0.7742;0.7823;0.7903;0.7984;0.8065;0.8145;0.8226;0.8306;0.8387;0.8468;0.8548;0.8629;0.8710;0.8790;0.8871;0.8952;0.9032;0.9113;0.9194;0.9274;0.9355;0.9435;0.9516;0.9597;0.9677;0.9758;0.9839;0.9919;1.0000" /></polygon>
+<rect x="-6" y="-6" width="12" height="12" rx="2" fill="#9333ea" stroke="#111827" stroke-width="1"><animateMotion dur="20.00s" path="M 181.0 521.0 L 181.0 487.0 L 181.0 453.0 L 181.0 453.0 L 181.0 453.0 L 215.0 453.0 L 215.0 453.0 L 215.0 453.0 L 215.0 419.0 L 215.0 385.0 L 215.0 351.0 L 215.0 317.0 L 215.0 283.0 L 215.0 249.0 L 215.0 249.0 L 215.0 249.0 L 249.0 249.0 L 249.0 249.0 L 249.0 249.0 L 249.0 249.0 L 283.0 249.0 L 317.0 249.0 L 317.0 249.0 L 317.0 249.0 L 317.0 283.0 L 317.0 317.0 L 317.0 351.0 L 317.0 385.0 L 317.0 419.0 L 317.0 453.0 L 317.0 487.0 L 317.0 487.0 L 317.0 487.0 L 351.0 487.0 L 385.0 487.0 L 419.0 487.0 L 453.0 487.0 L 487.0 487.0 L 521.0 487.0 L 521.0 487.0 L 521.0 487.0 L 521.0 521.0 L 521.0 521.0 L 521.0 521.0 L 521.0 521.0 L 521.0 487.0 L 521.0 453.0 L 521.0 453.0 L 521.0 453.0 L 487.0 453.0 L 453.0 453.0 L 419.0 453.0 L 385.0 453.0 L 351.0 453.0 L 351.0 453.0 L 351.0 453.0 L 351.0 419.0 L 351.0 385.0 L 351.0 351.0 L 351.0 317.0 L 351.0 283.0 L 351.0 249.0 L 351.0 215.0 L 351.0 181.0 L 351.0 147.0 L 351.0 147.0 L 351.0 147.0 L 317.0 147.0 L 317.0 147.0 L 317.0 147.0 L 317.0 113.0 L 317.0 79.0 L 317.0 79.0 L 317.0 79.0 L 283.0 79.0 L 249.0 79.0 L 215.0 79.0 L 181.0 79.0 L 147.0 79.0 L 147.0 79.0 L 147.0 79.0 L 147.0 79.0 L 181.0 79.0 L 215.0 79.0 L 249.0 79.0 L 283.0 79.0 L 317.0 79.0 L 351.0 79.0 L 385.0 79.0 L 419.0 79.0 L 453.0 79.0 L 453.0 79.0 L 453.0 79.0 L 453.0 113.0 L 453.0 147.0 L 453.0 181.0 L 453.0 215.0 L 453.0 249.0 L 453.0 283.0 L 453.0 317.0 L 453.0 351.0 L 453.0 385.0 L 453.0 419.0 L 453.0 453.0 L 453.0 453.0 L 453.0 453.0 L 487.0 453.0 L 521.0 453.0 L 521.0 453.0 L 521.0 453.0 L 521.0 487.0 L 521.0 521.0 L 521.0 521.0 L 521.0 521.0 L 521.0 521.0 L 487.0 521.0 L 453.0 521.0 L 419.0 521.0 L 385.0 521.0 L 351.0 521.0 L 317.0 521.0 L 283.0 521.0 L 249.0 521.0 L 215.0 521.0 L 181.0 521.0" fill="freeze" repeatCount="indefinite" /><animate attributeName="opacity" dur="20.00s" repeatCount="indefinite" values="0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0" keyTimes="0.0000;0.0081;0.0161;0.0242;0.0323;0.0403;0.0484;0.0565;0.0645;0.0726;0.0806;0.0887;0.0968;0.1048;0.1129;0.1210;0.1290;0.1371;0.1452;0.1532;0.1613;0.1694;0.1774;0.1855;0.1935;0.2016;0.2097;0.2177;0.2258;0.2339;0.2419;0.2500;0.2581;0.2661;0.2742;0.2823;0.2903;0.2984;0.3065;0.3145;0.3226;0.3306;0.3387;0.3468;0.3548;0.3629;0.3710;0.3790;0.3871;0.3952;0.4032;0.4113;0.4194;0.4274;0.4355;0.4435;0.4516;0.4597;0.4677;0.4758;0.4839;0.4919;0.5000;0.5081;0.5161;0.5242;0.5323;0.5403;0.5484;0.5565;0.5645;0.5726;0.5806;0.5887;0.5968;0.6048;0.6129;0.6210;0.6290;0.6371;0.6452;0.6532;0.6613;0.6694;0.6774;0.6855;0.6935;0.7016;0.7097;0.7177;0.7258;0.7339;0.7419;0.7500;0.7581;0.7661;0.7742;0.7823;0.7903;0.7984;0.8065;0.8145;0.8226;0.8306;0.8387;0.8468;0.8548;0.8629;0.8710;0.8790;0.8871;0.8952;0.9032;0.9113;0.9194;0.9274;0.9355;0.9435;0.9516;0.9597;0.9677;0.9758;0.9839;0.9919;1.0000" /><title>loaded AGV 3 carrying T004 to OUTBOUND</title></rect>
+<rect x="-6" y="-6" width="12" height="12" rx="2" fill="#9333ea" stroke="#111827" stroke-width="1"><animateMotion dur="20.00s" path="M 181.0 521.0 L 181.0 487.0 L 181.0 453.0 L 181.0 453.0 L 181.0 453.0 L 215.0 453.0 L 215.0 453.0 L 215.0 453.0 L 215.0 419.0 L 215.0 385.0 L 215.0 351.0 L 215.0 317.0 L 215.0 283.0 L 215.0 249.0 L 215.0 249.0 L 215.0 249.0 L 249.0 249.0 L 249.0 249.0 L 249.0 249.0 L 249.0 249.0 L 283.0 249.0 L 317.0 249.0 L 317.0 249.0 L 317.0 249.0 L 317.0 283.0 L 317.0 317.0 L 317.0 351.0 L 317.0 385.0 L 317.0 419.0 L 317.0 453.0 L 317.0 487.0 L 317.0 487.0 L 317.0 487.0 L 351.0 487.0 L 385.0 487.0 L 419.0 487.0 L 453.0 487.0 L 487.0 487.0 L 521.0 487.0 L 521.0 487.0 L 521.0 487.0 L 521.0 521.0 L 521.0 521.0 L 521.0 521.0 L 521.0 521.0 L 521.0 487.0 L 521.0 453.0 L 521.0 453.0 L 521.0 453.0 L 487.0 453.0 L 453.0 453.0 L 419.0 453.0 L 385.0 453.0 L 351.0 453.0 L 351.0 453.0 L 351.0 453.0 L 351.0 419.0 L 351.0 385.0 L 351.0 351.0 L 351.0 317.0 L 351.0 283.0 L 351.0 249.0 L 351.0 215.0 L 351.0 181.0 L 351.0 147.0 L 351.0 147.0 L 351.0 147.0 L 317.0 147.0 L 317.0 147.0 L 317.0 147.0 L 317.0 113.0 L 317.0 79.0 L 317.0 79.0 L 317.0 79.0 L 283.0 79.0 L 249.0 79.0 L 215.0 79.0 L 181.0 79.0 L 147.0 79.0 L 147.0 79.0 L 147.0 79.0 L 147.0 79.0 L 181.0 79.0 L 215.0 79.0 L 249.0 79.0 L 283.0 79.0 L 317.0 79.0 L 351.0 79.0 L 385.0 79.0 L 419.0 79.0 L 453.0 79.0 L 453.0 79.0 L 453.0 79.0 L 453.0 113.0 L 453.0 147.0 L 453.0 181.0 L 453.0 215.0 L 453.0 249.0 L 453.0 283.0 L 453.0 317.0 L 453.0 351.0 L 453.0 385.0 L 453.0 419.0 L 453.0 453.0 L 453.0 453.0 L 453.0 453.0 L 487.0 453.0 L 521.0 453.0 L 521.0 453.0 L 521.0 453.0 L 521.0 487.0 L 521.0 521.0 L 521.0 521.0 L 521.0 521.0 L 521.0 521.0 L 487.0 521.0 L 453.0 521.0 L 419.0 521.0 L 385.0 521.0 L 351.0 521.0 L 317.0 521.0 L 283.0 521.0 L 249.0 521.0 L 215.0 521.0 L 181.0 521.0" fill="freeze" repeatCount="indefinite" /><animate attributeName="opacity" dur="20.00s" repeatCount="indefinite" values="0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0" keyTimes="0.0000;0.0081;0.0161;0.0242;0.0323;0.0403;0.0484;0.0565;0.0645;0.0726;0.0806;0.0887;0.0968;0.1048;0.1129;0.1210;0.1290;0.1371;0.1452;0.1532;0.1613;0.1694;0.1774;0.1855;0.1935;0.2016;0.2097;0.2177;0.2258;0.2339;0.2419;0.2500;0.2581;0.2661;0.2742;0.2823;0.2903;0.2984;0.3065;0.3145;0.3226;0.3306;0.3387;0.3468;0.3548;0.3629;0.3710;0.3790;0.3871;0.3952;0.4032;0.4113;0.4194;0.4274;0.4355;0.4435;0.4516;0.4597;0.4677;0.4758;0.4839;0.4919;0.5000;0.5081;0.5161;0.5242;0.5323;0.5403;0.5484;0.5565;0.5645;0.5726;0.5806;0.5887;0.5968;0.6048;0.6129;0.6210;0.6290;0.6371;0.6452;0.6532;0.6613;0.6694;0.6774;0.6855;0.6935;0.7016;0.7097;0.7177;0.7258;0.7339;0.7419;0.7500;0.7581;0.7661;0.7742;0.7823;0.7903;0.7984;0.8065;0.8145;0.8226;0.8306;0.8387;0.8468;0.8548;0.8629;0.8710;0.8790;0.8871;0.8952;0.9032;0.9113;0.9194;0.9274;0.9355;0.9435;0.9516;0.9597;0.9677;0.9758;0.9839;0.9919;1.0000" /><title>loaded AGV 3 carrying T001 to OUTBOUND</title></rect>
+<text x="606" y="46" class="legend-title">Animated legend</text>
+<circle cx="614" cy="74" r="8" fill="#2563eb" stroke="#111827" />
+<text x="634" y="78" class="small">AGV body: same color per vehicle</text>
+<rect x="608" y="94" width="12" height="12" rx="2" fill="#2563eb" stroke="#111827" />
+<text x="634" y="106" class="small">loaded AGV: solid cargo box</text>
+<text x="606" y="136" class="small">cargo destination labels appear near stations</text>
+<text x="606" y="160" class="small">animation duration: 20.0s loop</text>
+<line x1="606" y1="188" x2="632" y2="188" stroke="#2563eb" stroke-width="4" />
+<text x="642" y="192" class="small">AGV 0: T008, T005 | steps=73</text>
+<line x1="606" y1="208" x2="632" y2="208" stroke="#dc2626" stroke-width="4" />
+<text x="642" y="212" class="small">AGV 1: T006, T002 | steps=92</text>
+<line x1="606" y1="228" x2="632" y2="228" stroke="#16a34a" stroke-width="4" />
+<text x="642" y="232" class="small">AGV 2: T003, T007 | steps=93</text>
+<line x1="606" y1="248" x2="632" y2="248" stroke="#9333ea" stroke-width="4" />
+<text x="642" y="252" class="small">AGV 3: T004, T001 | steps=125</text>
+<text x="606" y="284" class="legend-title">Task destinations</text>
+<text x="606" y="306" class="small">T001: S1 cargo destination OUTBOUND</text>
+<text x="606" y="324" class="small">T002: S3 cargo destination PACKING</text>
+<text x="606" y="342" class="small">T003: S12 cargo destination INBOUND</text>
+<text x="606" y="360" class="small">T004: S6 cargo destination OUTBOUND</text>
+<text x="606" y="378" class="small">T005: S8 cargo destination PACKING</text>
+<text x="606" y="396" class="small">T006: S10 cargo destination OUTBOUND</text>
+<text x="606" y="414" class="small">T007: S4 cargo destination INBOUND</text>
+<text x="606" y="432" class="small">T008: S11 cargo destination PACKING</text>
+</svg>

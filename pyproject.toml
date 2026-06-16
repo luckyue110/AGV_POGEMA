@@ -1,0 +1,13 @@
+[project]
+name = "pogema-warehouse-agv"
+version = "0.1.0"
+description = "POGEMA-based warehouse AGV scheduling and path planning simulation."
+requires-python = ">=3.10"
+dependencies = [
+    "pogema",
+]
+
+[dependency-groups]
+dev = [
+    "pytest",
+]

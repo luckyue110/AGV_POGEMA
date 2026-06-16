@@ -1,0 +1,77 @@
+[20:32:30][INFO] 日志文件: outputs/logs\warehouse_agv_20260615_203230.log
+[20:32:30][INFO] Warehouse AGV simulation
+[20:32:30][INFO] Task T001: S18(7, 6) -> INBOUND(14, 8)
+[20:32:30][INFO] Task T002: S1(1, 3) -> PACKING(14, 11)
+[20:32:30][INFO] Task T003: S18(7, 6) -> OUTBOUND(14, 14)
+[20:32:30][INFO] Task T004: S20(7, 13) -> PACKING(14, 11)
+[20:32:30][INFO] Task T005: S2(1, 4) -> INBOUND(14, 8)
+[20:32:30][INFO] Task T006: S9(6, 3) -> INBOUND(14, 8)
+[20:32:30][INFO] Task T007: S17(7, 3) -> OUTBOUND(14, 14)
+[20:32:30][INFO] Task T008: S1(1, 3) -> INBOUND(14, 8)
+[20:32:30][INFO] Task T009: S5(1, 10) -> OUTBOUND(14, 14)
+[20:32:30][INFO] Task T010: S1(1, 3) -> INBOUND(14, 8)
+[20:32:30][INFO] Task T011: S11(6, 6) -> PACKING(14, 11)
+[20:32:30][INFO] Task T012: S23(12, 11) -> OUTBOUND(14, 14)
+[20:32:30][INFO] Task T013: S1(1, 3) -> PACKING(14, 11)
+[20:32:30][INFO] Task T014: S6(1, 11) -> PACKING(14, 11)
+[20:32:30][INFO] Task T015: S21(12, 4) -> OUTBOUND(14, 14)
+[20:32:30][INFO] Task T016: S10(6, 4) -> INBOUND(14, 8)
+[20:32:30][INFO] AGV 0: tasks=['T012', 'T009'], path_length=93
+[20:32:30][INFO] AGV 1: tasks=['T015', 'T016'], path_length=95
+[20:32:30][INFO] AGV 2: tasks=['T001', 'T007'], path_length=109
+[20:32:30][INFO] AGV 3: tasks=['T004', 'T008'], path_length=129
+[20:32:30][INFO] AGV 4: tasks=['T006', 'T010'], path_length=153
+[20:32:30][INFO] AGV 5: tasks=['T003', 'T005'], path_length=173
+[20:32:30][INFO] AGV 6: tasks=['T011', 'T002'], path_length=183
+[20:32:30][INFO] AGV 7: tasks=['T014', 'T013'], path_length=217
+[20:32:30][INFO] 
+Route plan:
+  AGV 0: tasks=['T012', 'T009'], planned_edges=92
+    T012: (14, 1) -> S23(12, 11) (12 edges), then OUTBOUND(14, 14) (5 edges)
+    T009: (14, 14) -> S5(1, 10) (17 edges), then OUTBOUND(14, 14) (17 edges)
+    travel_edges=51, operation_wait_edges=12, avoidance_edges=29
+  AGV 1: tasks=['T015', 'T016'], planned_edges=94
+    T015: (14, 5) -> S21(12, 4) (3 edges), then OUTBOUND(14, 14) (12 edges)
+    T016: (14, 14) -> S10(6, 4) (18 edges), then INBOUND(14, 8) (12 edges)
+    travel_edges=45, operation_wait_edges=12, avoidance_edges=37
+  AGV 2: tasks=['T001', 'T007'], planned_edges=108
+    T001: (14, 7) -> S18(7, 6) (10 edges), then INBOUND(14, 8) (9 edges)
+    T007: (14, 8) -> S17(7, 3) (12 edges), then OUTBOUND(14, 14) (18 edges)
+    travel_edges=49, operation_wait_edges=12, avoidance_edges=47
+  AGV 3: tasks=['T004', 'T008'], planned_edges=128
+    T004: (14, 10) -> S20(7, 13) (10 edges), then PACKING(14, 11) (9 edges)
+    T008: (14, 11) -> S1(1, 3) (21 edges), then INBOUND(14, 8) (18 edges)
+    travel_edges=58, operation_wait_edges=12, avoidance_edges=58
+  AGV 4: tasks=['T006', 'T010'], planned_edges=152
+    T006: (13, 1) -> S9(6, 3) (9 edges), then INBOUND(14, 8) (13 edges)
+    T010: (14, 8) -> S1(1, 3) (18 edges), then INBOUND(14, 8) (18 edges)
+    travel_edges=58, operation_wait_edges=12, avoidance_edges=82
+  AGV 5: tasks=['T003', 'T005'], planned_edges=172
+    T003: (13, 5) -> S18(7, 6) (7 edges), then OUTBOUND(14, 14) (15 edges)
+    T005: (14, 14) -> S2(1, 4) (23 edges), then INBOUND(14, 8) (17 edges)
+    travel_edges=62, operation_wait_edges=12, avoidance_edges=98
+  AGV 6: tasks=['T011', 'T002'], planned_edges=182
+    T011: (13, 9) -> S11(6, 6) (10 edges), then PACKING(14, 11) (13 edges)
+    T002: (14, 11) -> S1(1, 3) (21 edges), then PACKING(14, 11) (21 edges)
+    travel_edges=65, operation_wait_edges=12, avoidance_edges=105
+  AGV 7: tasks=['T014', 'T013'], planned_edges=216
+    T014: (13, 13) -> S6(1, 11) (14 edges), then PACKING(14, 11) (15 edges)
+    T013: (14, 11) -> S1(1, 3) (21 edges), then PACKING(14, 11) (21 edges)
+    travel_edges=71, operation_wait_edges=12, avoidance_edges=133
+[20:32:32][INFO] ==================================================
+[20:32:32][INFO] 测试用例: warehouse_agv
+[20:32:32][INFO] 仿真步数: 2000
+[20:32:32][INFO] 总奖励:   16000.00
+[20:32:32][INFO] 结束原因: 所有智能体到达目标 ✓
+[20:32:32][INFO] --------------------------------------------------
+[20:32:32][INFO]   Agent 0: ✓ 到达 | 路径长=93 | 阻塞次数=0
+[20:32:32][INFO]   Agent 1: ✓ 到达 | 路径长=95 | 阻塞次数=0
+[20:32:32][INFO]   Agent 2: ✓ 到达 | 路径长=109 | 阻塞次数=0
+[20:32:32][INFO]   Agent 3: ✓ 到达 | 路径长=129 | 阻塞次数=0
+[20:32:32][INFO]   Agent 4: ✓ 到达 | 路径长=153 | 阻塞次数=0
+[20:32:32][INFO]   Agent 5: ✓ 到达 | 路径长=173 | 阻塞次数=0
+[20:32:32][INFO]   Agent 6: ✓ 到达 | 路径长=183 | 阻塞次数=0
+[20:32:32][INFO]   Agent 7: ✓ 到达 | 路径长=217 | 阻塞次数=0
+[20:32:32][INFO] ==================================================
+[20:32:32][INFO] Animation saved: outputs/animations\warehouse_agv.svg
+[20:32:32][INFO] Enhanced animation saved: outputs/animations/warehouse_agv_enhanced.svg

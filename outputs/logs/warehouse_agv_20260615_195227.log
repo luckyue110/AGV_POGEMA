@@ -1,0 +1,45 @@
+[19:52:27][INFO] 日志文件: outputs/logs\warehouse_agv_20260615_195227.log
+[19:52:27][INFO] Warehouse AGV simulation
+[19:52:27][INFO] Task T001: S1(1, 3) -> OUTBOUND(14, 14)
+[19:52:27][INFO] Task T002: S3(1, 10) -> PACKING(14, 11)
+[19:52:27][INFO] Task T003: S12(12, 13) -> INBOUND(14, 8)
+[19:52:27][INFO] Task T004: S6(6, 6) -> OUTBOUND(14, 14)
+[19:52:27][INFO] Task T005: S8(6, 13) -> PACKING(14, 11)
+[19:52:27][INFO] Task T006: S10(12, 6) -> OUTBOUND(14, 14)
+[19:52:27][INFO] Task T007: S4(1, 13) -> INBOUND(14, 8)
+[19:52:27][INFO] Task T008: S11(12, 10) -> PACKING(14, 11)
+[19:52:27][INFO] AGV 0: tasks=['T008', 'T005'], path_length=73
+[19:52:27][INFO] AGV 1: tasks=['T006', 'T002'], path_length=92
+[19:52:27][INFO] AGV 2: tasks=['T003', 'T007'], path_length=93
+[19:52:27][INFO] AGV 3: tasks=['T004', 'T001'], path_length=125
+[19:52:27][INFO] 
+Route plan:
+  AGV 0: tasks=['T008', 'T005'], planned_edges=72
+    T008: (14, 1) -> S11(12, 10) (11 edges), then PACKING(14, 11) (3 edges)
+    T005: (14, 11) -> S8(6, 13) (10 edges), then PACKING(14, 11) (10 edges)
+    travel_edges=34, operation_wait_edges=12, avoidance_edges=26
+  AGV 1: tasks=['T006', 'T002'], planned_edges=91
+    T006: (14, 2) -> S10(12, 6) (6 edges), then OUTBOUND(14, 14) (10 edges)
+    T002: (14, 14) -> S3(1, 10) (17 edges), then PACKING(14, 11) (16 edges)
+    travel_edges=49, operation_wait_edges=12, avoidance_edges=30
+  AGV 2: tasks=['T003', 'T007'], planned_edges=92
+    T003: (14, 3) -> S12(12, 13) (12 edges), then INBOUND(14, 8) (7 edges)
+    T007: (14, 8) -> S4(1, 13) (18 edges), then INBOUND(14, 8) (18 edges)
+    travel_edges=55, operation_wait_edges=12, avoidance_edges=25
+  AGV 3: tasks=['T004', 'T001'], planned_edges=124
+    T004: (14, 4) -> S6(6, 6) (10 edges), then OUTBOUND(14, 14) (16 edges)
+    T001: (14, 14) -> S1(1, 3) (24 edges), then OUTBOUND(14, 14) (24 edges)
+    travel_edges=74, operation_wait_edges=12, avoidance_edges=38
+[19:52:27][INFO] ==================================================
+[19:52:27][INFO] 测试用例: warehouse_agv
+[19:52:27][INFO] 仿真步数: 512
+[19:52:27][INFO] 总奖励:   0.00
+[19:52:27][INFO] 结束原因: 达到最大步数 ✗
+[19:52:27][INFO] --------------------------------------------------
+[19:52:27][INFO]   Agent 0: ✗ 未到达 | 路径长=73 | 阻塞次数=10
+[19:52:27][INFO]   Agent 1: ✗ 未到达 | 路径长=92 | 阻塞次数=423
+[19:52:27][INFO]   Agent 2: ✗ 未到达 | 路径长=93 | 阻塞次数=7
+[19:52:27][INFO]   Agent 3: ✗ 未到达 | 路径长=125 | 阻塞次数=389
+[19:52:27][INFO] ==================================================
+[19:52:27][INFO] Animation saved: outputs/animations\warehouse_agv.svg
+[19:52:27][INFO] Enhanced animation saved: outputs/animations/warehouse_agv_enhanced.svg
