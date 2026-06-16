@@ -1,49 +1,50 @@
 # AGV POGEMA Warehouse Scheduler
 
-基于 [POGEMA](https://github.com/AIRI-Institute/pogema) 的仓库 AGV 调度与路径规划示例项目。项目把原始多智能体寻路环境扩展成一个简化但可运行的真实仓库场景：货架、入库区、打包区、出库区、多个 AGV、随机/指定运输任务、取放货等待、转向耗时、回库停车、碰撞规避和 SVG 动画可视化。
+A warehouse AGV scheduling and path-planning demo built on top of [POGEMA](https://github.com/AIRI-Institute/pogema). This project extends the original multi-agent path-finding environment into a runnable warehouse scenario with shelves, inbound/packing/outbound stations, multiple AGVs, random or specified transport tasks, pickup/drop-off waiting time, turn cost, return-to-parking behavior, collision avoidance, and SVG visualization.
 
-## 功能概览
+## Features
 
-- 仓库地图：货架、站点、服务点、停车点均可配置。
-- 任务系统：支持随机生成任务，也支持指定 `货架:目的地`。
-- 调度策略：空闲 AGV 优先，每次给空闲 AGV 分配最近任务。
-- 路径规划：A* + 时空预约表 + prioritized replanning。
-- 约束支持：同格冲突、对向换位冲突、指定时间点禁止进入某格/某边。
-- 操作耗时：取货/放货默认等待 `3` 个时间单位。
-- 转向耗时：改变前进方向默认等待 `2` 个时间单位。
-- 停车要求：任务完成后 AGV 返回出发点；如果冲突，会通过重规划/等待避让。
-- 可视化：输出原始 POGEMA SVG、增强 SVG、路线图和独立方案动画。
+- Configurable warehouse layout with shelves, stations, service cells, and AGV parking points.
+- Random task generation and explicit task input such as `S1:OUTBOUND,S3:PACKING`.
+- Greedy dispatching: each idle AGV receives the nearest available task.
+- A* path planning with a space-time reservation table.
+- Prioritized replanning for conflict resolution.
+- Vertex and edge constraints for collision handling.
+- Pickup and drop-off operation wait time, defaulting to `3` time steps.
+- Turn wait time, defaulting to `2` time steps when an AGV changes direction.
+- Return-to-start parking after all assigned tasks are completed.
+- SVG output for original POGEMA animation, enhanced animation, route maps, and solution animation.
 
-## 环境安装
+## Installation
 
-推荐使用 `uv`：
+This project is designed to run with `uv`.
 
 ```powershell
 uv sync --dev
 ```
 
-运行测试：
+Run the test suite:
 
 ```powershell
 $env:UV_CACHE_DIR='.uv-cache'
 uv run python -m pytest -q
 ```
 
-## 快速运行
+## Quick Start
 
-列出可用货架和站点：
+List available shelves, pickup service cells, and drop-off service cells:
 
 ```powershell
 uv run python warehouse_simulation.py --list-locations
 ```
 
-运行默认随机任务：
+Run the default random task scenario:
 
 ```powershell
 uv run python warehouse_simulation.py
 ```
 
-运行复杂示例，生成 8 台 AGV、16 个随机任务：
+Run a larger scenario with 8 AGVs and 16 random transport tasks:
 
 ```powershell
 uv run python warehouse_simulation.py `
@@ -58,192 +59,216 @@ uv run python warehouse_simulation.py `
   --solution-animation outputs/animations/warehouse_8agv_16tasks_solution.svg
 ```
 
-指定任务运行：
+Run specified tasks:
 
 ```powershell
 uv run python warehouse_simulation.py --tasks "S1:OUTBOUND,S3:PACKING,S12:INBOUND"
 ```
 
-## 输出文件
+## Output Files
 
-常用输出位置：
+Common outputs are written under `outputs/`:
 
-- `outputs/animations/warehouse_agv.svg`：POGEMA 原始动画。
-- `outputs/animations/warehouse_agv_enhanced.svg`：增强动画，显示货物、取货点、目的地等信息。
-- `outputs/animations/warehouse_route_map.svg`：静态路线图。
-- `outputs/animations/warehouse_solution_animated.svg`：独立绘制的方案动画。
-- `outputs/logs/warehouse_agv_*.log`：任务分配、路径长度、阻塞次数等日志。
+- `outputs/animations/warehouse_agv.svg`: original POGEMA SVG animation.
+- `outputs/animations/warehouse_agv_enhanced.svg`: enhanced animation with cargo, pickup points, destinations, and labels.
+- `outputs/animations/warehouse_route_map.svg`: static route map.
+- `outputs/animations/warehouse_solution_animated.svg`: standalone animated solution view.
+- `outputs/logs/warehouse_agv_*.log`: task assignment, path length, blocked count, and run summary.
 
-建议优先查看：
+The most useful file for inspecting the solution is usually:
 
 ```text
 outputs/animations/warehouse_agv_enhanced.svg
 ```
 
-## 算法说明
+## Algorithm Overview
 
-核心代码在 `warehouse/planner.py`。
+The core implementation lives in `warehouse/planner.py`.
 
-当前规划流程：
+The current planning pipeline is:
 
-1. 调度器先为每台 AGV 生成任务序列。
-2. 单车 A* 按任务顺序规划：
-   - 出发点 -> 取货服务点
-   - 取货等待
-   - 取货服务点 -> 放货服务点
-   - 放货等待
-   - 最后回到出发停车点
-3. A* 使用时空预约表避开已经规划好的 AGV。
-4. 生成所有路径后扫描冲突：
-   - vertex conflict：同一时间两个 AGV 在同一格。
-   - swap conflict：两个 AGV 在同一时间对向交换位置。
-5. 若发现冲突，将冲突转化为约束：
+1. The scheduler assigns each AGV a task sequence.
+2. A single-AGV planner builds a path through:
+   - start position to pickup service cell,
+   - pickup wait,
+   - pickup service cell to drop-off service cell,
+   - drop-off wait,
+   - final return to the AGV's start/parking cell.
+3. A* uses a space-time reservation table to avoid already planned AGVs.
+4. After all initial paths are built, the planner scans for conflicts:
+   - vertex conflict: two AGVs occupy the same cell at the same time,
+   - swap conflict: two AGVs exchange cells in the same time step.
+5. Conflicts are converted into constraints:
    - `("vertex", time, position)`
    - `("edge", time, from_position, to_position)`
-6. 对低优先级 AGV 重新规划完整路径。
-7. 若局部约束下无法重规划，则使用少量等待作为兜底。
+6. The lower-priority AGV is replanned with the new constraint.
+7. If a constrained replan is not feasible, a small local wait is used as a fallback.
 
-这不是完整最优 CBS，而是更适合工程落地的 prioritized planning with replanning。它比“只插等待”的策略更少出现某台车走一步停一步的问题，同时仍能保证输出路径无同格/换位碰撞。
+This is not a full optimal CBS implementation. It is a practical prioritized planning with replanning approach. It is much better than a wait-only repair strategy for this warehouse demo because it can reroute an AGV instead of repeatedly forcing it to stop.
 
-## 如何改造算法
+## How to Customize the Algorithm
 
-### 1. 修改任务分配策略
+### 1. Change Task Assignment
 
-入口在 `warehouse/scheduler.py`：
+Task assignment is implemented in:
+
+```text
+warehouse/scheduler.py
+```
+
+Main entry point:
 
 ```python
 schedule_tasks_greedy(...)
 ```
 
-当前策略是：每次选择最早空闲的 AGV，并给它最近的任务。
+The current strategy chooses the earliest available AGV and assigns the nearest remaining task.
 
-你可以改成：
+Possible extensions:
 
-- 考虑拥堵成本。
-- 考虑任务优先级。
-- 按出库/入库波次批量分配。
-- 用匈牙利算法做一轮全局任务匹配。
+- Add congestion cost to task selection.
+- Add task priority or due time.
+- Batch tasks by inbound/outbound waves.
+- Replace greedy assignment with a global matching algorithm.
 
-建议保持输出仍为：
+Keep the output compatible with:
 
 ```python
 ScheduleResult(agv_schedules=[...], unassigned_tasks=[...])
 ```
 
-这样后面的路径规划和可视化不用改。
+That lets the existing planner and visualization pipeline continue to work.
 
-### 2. 修改路径规划策略
+### 2. Change Path Planning
 
-入口在 `warehouse/planner.py`：
+Path planning is implemented in:
 
-```python
-plan_scheduled_paths(...)
+```text
+warehouse/planner.py
 ```
 
-常见改造点：
+Important functions:
 
-- `astar_with_reservations`：替换或增强 A*。
-- `_resolve_path_collisions`：修改冲突后重规划策略。
-- `_constraint_from_collision`：扩展约束类型。
-- `_plan_single_agv_path`：改变单车任务链规划方式。
+- `plan_scheduled_paths(...)`: public planning entry point.
+- `_plan_single_agv_path(...)`: builds one AGV's full task path.
+- `astar_with_reservations(...)`: A* with reservations and optional constraints.
+- `_first_path_collision(...)`: detects vertex and swap conflicts.
+- `_resolve_path_collisions(...)`: prioritized replanning loop.
+- `_constraint_from_collision(...)`: converts a conflict into an agent constraint.
 
-例如，如果你想接近完整 CBS，可以：
+To move toward a full CBS implementation, reuse the existing building blocks:
 
-1. 把当前单一路径集合改成 CBS 节点。
-2. 每个 CBS 节点保存：
-   - 所有 AGV 路径
-   - 约束集合
-   - 总成本
-3. 每次取总成本最低的节点。
-4. 找第一个冲突。
-5. 分裂成两个子节点，分别约束冲突的两个 AGV。
-6. 只重规划被加约束的 AGV。
-7. 直到无冲突。
+1. Represent a CBS node as:
+   - all AGV paths,
+   - per-agent constraints,
+   - total solution cost.
+2. Pop the lowest-cost node.
+3. Detect the first conflict.
+4. Split into two child nodes, each constraining one of the conflicting AGVs.
+5. Replan only the constrained AGV.
+6. Continue until a conflict-free node is found.
 
-当前项目已经具备 CBS 所需的几个基础组件：
+The project already includes:
 
-- 冲突检测：`_first_path_collision`
-- 约束表：`ConstraintTable`
-- 约束 A*：`astar_with_reservations(..., constraints=...)`
-- 单车重规划：`_plan_single_agv_path`
+- conflict detection,
+- agent-specific constraints,
+- constrained A*,
+- single-AGV replanning.
 
-### 3. 修改仓库地图
+### 3. Change the Warehouse Layout
 
-入口在 `warehouse/layouts.py`：
+Warehouse geometry is defined in:
+
+```text
+warehouse/layouts.py
+```
+
+Main entry point:
 
 ```python
 create_default_warehouse_layout(...)
 ```
 
-可调整内容：
+Common customization points:
 
-- `shelf_blocks`：货架障碍物块。
-- `station_points`：入库、打包、出库站点。
-- `agv_starts`：AGV 出发/停车点。
-- `shelf_points` 和 `pickup_points`：货物所在货架与 AGV 可停靠取货的服务点。
-- `dropoff_points`：站点旁边的放货服务点。
+- `shelf_blocks`: obstacle rectangles representing shelf areas.
+- `station_points`: inbound, packing, and outbound station cells.
+- `agv_starts`: AGV start and parking cells.
+- `shelf_points`: cargo locations on shelf obstacle cells.
+- `pickup_points`: service cells where AGVs can pick cargo.
+- `dropoff_points`: service cells near station obstacles.
 
-注意：
+Rules to keep in mind:
 
-- 货架、站点本身是障碍物，AGV 不允许进入。
-- pickup/dropoff 应该放在障碍物旁边的可通行格子。
-- 如果新增更多 AGV，需要确保停车点不会把主通道完全堵死。
+- Shelves and station cells are obstacles.
+- AGVs should never enter shelf or station cells.
+- Pickup and drop-off cells should be adjacent traversable cells.
+- More AGVs require enough parking cells and enough aisle capacity.
 
-### 4. 修改可视化
+### 4. Change Visualization
 
-入口在 `warehouse/visualization.py`。
+Visualization is implemented in:
 
-常见改造：
-
-- 修改货物图标样式。
-- 修改 pickup/dropoff 标签。
-- 增加任务编号、目标站点、当前状态。
-- 调整 POGEMA 原始 SVG 的增强 overlay。
-
-增强动画生成函数：
-
-```python
-save_enhanced_pogema_svg(...)
+```text
+warehouse/visualization.py
 ```
 
-## 测试建议
+Useful functions:
 
-修改算法后至少运行：
+- `save_route_map_svg(...)`
+- `save_solution_animation_svg(...)`
+- `save_enhanced_pogema_svg(...)`
+
+Common extensions:
+
+- Change cargo icon style.
+- Add more task labels.
+- Show AGV intent or next destination.
+- Add per-AGV route statistics.
+- Customize station and shelf rendering.
+
+The enhanced POGEMA SVG keeps the original AGV circle style and overlays cargo/destination information. Empty AGVs remain as plain AGV circles.
+
+## Testing
+
+Run all tests:
 
 ```powershell
 uv run python -m pytest -q
 ```
 
-重点测试：
+Planner-specific tests:
 
 ```powershell
 uv run python -m pytest test/test_warehouse_planner.py -q
 ```
 
-复杂场景建议验证：
+After changing planning logic, verify:
 
-- 所有 AGV 都完成任务。
-- 阻塞次数为 `0`。
-- 无 vertex/swap conflict。
-- 某一台 AGV 不应出现大量连续等待。
+- no vertex conflicts,
+- no swap conflicts,
+- all AGVs finish their planned paths,
+- POGEMA blocked counts remain `0`,
+- no AGV has excessive stop-and-go behavior.
 
-## 项目结构
+## Project Structure
 
 ```text
 warehouse/
-  layouts.py        # 仓库地图、货架、站点、停车点
-  tasks.py          # 任务生成与任务解析
-  scheduler.py      # AGV 任务调度
-  planner.py        # A*、预约表、冲突检测、重规划
-  visualization.py  # 路线图和 SVG 动画增强
+  layouts.py        # Warehouse map, shelves, stations, parking points
+  tasks.py          # Task generation and task parsing
+  scheduler.py      # AGV task assignment
+  planner.py        # A*, reservations, conflicts, replanning
+  visualization.py  # Route maps and SVG animation overlays
 
-warehouse_simulation.py  # 命令行入口
-test/                    # pytest 测试
-outputs/                 # 动画和日志输出
+warehouse_simulation.py  # CLI entry point
+test/                    # pytest suite
+outputs/                 # Generated animations and logs
 ```
 
-## 注意事项
+## Notes
 
-- 当前算法偏工程示例，不保证全局最优。
-- `collision_system="soft"` 用于让 POGEMA 动画忠实展示离线路径；真实避碰由 `warehouse/planner.py` 保证。
-- 如果地图更复杂、AGV 更多，建议把当前 prioritized replanning 进一步升级为完整 CBS 或带拥堵代价的分层规划。
+- The current planner is intended as an engineering demo, not a globally optimal solver.
+- `collision_system="soft"` is used so POGEMA animation follows the offline planned paths exactly.
+- Actual collision avoidance is handled by `warehouse/planner.py`.
+- For larger layouts or more AGVs, consider upgrading prioritized replanning to full CBS or adding congestion-aware task assignment.
