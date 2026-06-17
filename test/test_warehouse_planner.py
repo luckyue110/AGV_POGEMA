@@ -7,8 +7,9 @@ from warehouse.planner import (
     plan_scheduled_paths_cbs,
     plan_scheduled_paths,
 )
-from warehouse.scheduler import schedule_tasks_greedy
+from warehouse.scheduler import schedule_tasks_greedy, schedule_tasks_ilp
 from warehouse.tasks import TransportTask, generate_random_tasks
+from warehouse.traffic import EAST, TrafficRules, build_warehouse_zone_traffic_rules
 
 
 def test_planner_builds_path_through_pickup_and_dropoff():
@@ -120,6 +121,40 @@ def test_astar_respects_edge_constraint_for_agent():
     assert path == [(0, 0), (0, 0), (0, 1), (0, 2)]
 
 
+def test_astar_respects_area_traffic_rules():
+    grid_map = [[0, 0, 0]]
+    rules = TrafficRules(horizontal_rows={0: EAST})
+
+    blocked = astar_with_reservations(
+        grid_map,
+        (0, 2),
+        (0, 0),
+        traffic_rules=rules,
+    )
+    allowed = astar_with_reservations(
+        grid_map,
+        (0, 0),
+        (0, 2),
+        traffic_rules=rules,
+    )
+
+    assert blocked is None
+    assert allowed == [(0, 0), (0, 1), (0, 2)]
+
+
+def test_default_traffic_rules_keep_named_points_reachable():
+    layout = create_default_warehouse_layout(num_agvs=8)
+    rules = build_warehouse_zone_traffic_rules(layout)
+    named_points = list(layout.pickup_points.values()) + list(layout.dropoff_points.values())
+
+    for start in layout.agv_starts:
+        assert any(
+            astar_with_reservations(layout.map, start, point, traffic_rules=rules)
+            is not None
+            for point in named_points
+        )
+
+
 def test_planner_can_return_agv_to_parking_after_tasks():
     layout = create_default_warehouse_layout(num_agvs=1)
     task = TransportTask(
@@ -185,6 +220,8 @@ def test_single_agv_replan_path_preserves_task_order_and_parking():
         parking_goal=layout.agv_starts[0],
         fallback_parking_goals=layout.parking_points,
         dispatch_gap=0,
+        staging_goals=None,
+        traffic_rules=None,
         reservations={},
         constraints={},
     )
@@ -225,6 +262,32 @@ def test_planner_avoids_later_agv_start_during_dispatch_wait():
     other_start = layout.agv_starts[1]
     assert assigned_agv_id == 0
     assert other_start not in paths[assigned_agv_id][:13]
+
+
+def test_planner_moves_waiting_agv_to_staging_buffer():
+    layout = create_default_warehouse_layout(num_agvs=2)
+    tasks = generate_random_tasks(layout, count=2, seed=23)
+    schedule = schedule_tasks_greedy(
+        layout.map,
+        layout.agv_starts,
+        tasks,
+        operation_wait=3,
+        turn_wait=2,
+    )
+
+    paths = plan_scheduled_paths_cbs(
+        layout.map,
+        schedule.agv_schedules,
+        operation_wait=3,
+        turn_wait=2,
+        parking_goals=layout.agv_starts,
+        fallback_parking_goals=layout.parking_points,
+        dispatch_gap=12,
+        staging_goals=layout.buffer_points,
+    )
+
+    assert paths[1][1] != layout.agv_starts[1]
+    assert layout.buffer_points[1] in paths[1][:13]
 
 
 def test_planner_turn_waits_do_not_create_vertex_or_swap_collisions():
@@ -302,6 +365,52 @@ def test_cbs_planner_solves_complex_case_without_vertex_or_swap_collisions():
     assert _first_collision(paths) is None
     assert max(len(path) for path in paths) <= 300
     assert sum(len(path) - 1 for path in paths) <= 1300
+
+
+def test_ilp_scheduler_does_not_worsen_complex_case_makespan():
+    layout = create_default_warehouse_layout(num_agvs=8, max_episode_steps=3000)
+    tasks = generate_random_tasks(layout, count=16, seed=23)
+    greedy_schedule = schedule_tasks_greedy(
+        layout.map,
+        layout.agv_starts,
+        tasks,
+        operation_wait=3,
+        turn_wait=2,
+    )
+    ilp_schedule = schedule_tasks_ilp(
+        layout.map,
+        layout.agv_starts,
+        tasks,
+        operation_wait=3,
+        turn_wait=2,
+        parking_goals=layout.agv_starts,
+        fallback_parking_goals=layout.parking_points,
+        dispatch_gap=4,
+        staging_goals=layout.buffer_points,
+    )
+
+    greedy_paths = plan_scheduled_paths(
+        layout.map,
+        greedy_schedule.agv_schedules,
+        operation_wait=3,
+        turn_wait=2,
+        parking_goals=layout.agv_starts,
+        fallback_parking_goals=layout.parking_points,
+        dispatch_gap=4,
+        staging_goals=layout.buffer_points,
+    )
+    ilp_paths = plan_scheduled_paths(
+        layout.map,
+        ilp_schedule.agv_schedules,
+        operation_wait=3,
+        turn_wait=2,
+        parking_goals=layout.agv_starts,
+        fallback_parking_goals=layout.parking_points,
+        dispatch_gap=4,
+        staging_goals=layout.buffer_points,
+    )
+
+    assert max(len(path) for path in ilp_paths) <= max(len(path) for path in greedy_paths)
 
 
 def _first_collision(paths):

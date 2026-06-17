@@ -2,6 +2,7 @@ import heapq
 
 from warehouse.layouts import Coordinate
 from warehouse.scheduler import AGVSchedule
+from warehouse.traffic import TrafficRules
 
 ReservationTable = dict[tuple[int, int, int], int]
 VertexConstraint = tuple[str, int, Coordinate]
@@ -18,6 +19,8 @@ def plan_scheduled_paths(
     parking_goals: list[Coordinate] | None = None,
     fallback_parking_goals: list[Coordinate] | None = None,
     dispatch_gap: int = 0,
+    staging_goals: list[Coordinate] | None = None,
+    traffic_rules: TrafficRules | None = None,
 ) -> list[list[Coordinate]]:
     reservations: ReservationTable = {}
     _reserve_initial_dispatch_waits(reservations, schedules, dispatch_gap)
@@ -33,6 +36,8 @@ def plan_scheduled_paths(
             parking_goal,
             fallback_parking_goals or [],
             dispatch_gap,
+            staging_goals,
+            traffic_rules,
             reservations,
             constraints={},
         )
@@ -45,6 +50,8 @@ def plan_scheduled_paths(
                 parking_goal,
                 fallback_parking_goals or [],
                 dispatch_gap,
+                staging_goals,
+                traffic_rules,
                 reservations={},
                 constraints={},
             )
@@ -66,6 +73,8 @@ def plan_scheduled_paths(
         parking_goals,
         fallback_parking_goals or [],
         dispatch_gap,
+        staging_goals,
+        traffic_rules,
         hold_final=parking_goals is not None,
     )
 
@@ -78,6 +87,8 @@ def plan_scheduled_paths_cbs(
     parking_goals: list[Coordinate] | None = None,
     fallback_parking_goals: list[Coordinate] | None = None,
     dispatch_gap: int = 0,
+    staging_goals: list[Coordinate] | None = None,
+    traffic_rules: TrafficRules | None = None,
     max_nodes: int = 2000,
 ) -> list[list[Coordinate]]:
     hold_final = parking_goals is not None
@@ -90,6 +101,8 @@ def plan_scheduled_paths_cbs(
         parking_goals,
         fallback_parking_goals or [],
         dispatch_gap,
+        staging_goals,
+        traffic_rules,
         root_constraints,
     )
     if not root_paths:
@@ -101,6 +114,8 @@ def plan_scheduled_paths_cbs(
             parking_goals,
             fallback_parking_goals,
             dispatch_gap,
+            staging_goals,
+            traffic_rules,
         )
 
     open_set = []
@@ -131,6 +146,8 @@ def plan_scheduled_paths_cbs(
                 parking_goal,
                 fallback_parking_goals or [],
                 dispatch_gap,
+                staging_goals,
+                traffic_rules,
                 reservations={},
                 constraints=child_constraints,
             )
@@ -157,6 +174,8 @@ def plan_scheduled_paths_cbs(
         parking_goals,
         fallback_parking_goals,
         dispatch_gap,
+        staging_goals,
+        traffic_rules,
     )
 
 
@@ -168,6 +187,8 @@ def _plan_all_paths_for_constraints(
     parking_goals: list[Coordinate] | None,
     fallback_parking_goals: list[Coordinate],
     dispatch_gap: int,
+    staging_goals: list[Coordinate] | None,
+    traffic_rules: TrafficRules | None,
     constraints: ConstraintTable,
 ) -> list[list[Coordinate]]:
     paths = []
@@ -181,6 +202,8 @@ def _plan_all_paths_for_constraints(
             parking_goal,
             fallback_parking_goals,
             dispatch_gap,
+            staging_goals,
+            traffic_rules,
             reservations={},
             constraints=constraints,
         )
@@ -198,15 +221,47 @@ def _plan_single_agv_path(
     parking_goal: Coordinate | None,
     fallback_parking_goals: list[Coordinate],
     dispatch_gap: int,
+    staging_goals: list[Coordinate] | None,
+    traffic_rules: TrafficRules | None,
     reservations: ReservationTable,
     constraints: ConstraintTable,
 ) -> list[Coordinate]:
     current = schedule.start
     full_path = [current]
+    dispatch_wait = schedule.agv_id * dispatch_gap
+    if dispatch_wait > 0 and staging_goals:
+        staging_goal = staging_goals[schedule.agv_id % len(staging_goals)]
+        if staging_goal != current:
+            to_staging = astar_with_reservations(
+                grid_map,
+                current,
+                staging_goal,
+                reservations,
+                len(full_path) - 1,
+                agv_id=schedule.agv_id,
+                constraints=constraints,
+                traffic_rules=traffic_rules,
+            )
+            if to_staging is None:
+                return []
+            if not _extend_with_turn_waits(
+                full_path,
+                to_staging,
+                turn_wait,
+                reservations,
+                grid_map,
+                schedule.agv_id,
+                constraints,
+            ):
+                return []
+            current = staging_goal
+        remaining_wait = max(dispatch_wait - (len(full_path) - 1), 0)
+    else:
+        remaining_wait = dispatch_wait
     if not _append_wait(
         full_path,
         current,
-        schedule.agv_id * dispatch_gap,
+        remaining_wait,
         reservations,
         grid_map,
         schedule.agv_id,
@@ -223,6 +278,7 @@ def _plan_single_agv_path(
             len(full_path) - 1,
             agv_id=schedule.agv_id,
             constraints=constraints,
+            traffic_rules=traffic_rules,
         )
         if to_pickup is None:
             return []
@@ -256,6 +312,7 @@ def _plan_single_agv_path(
             len(full_path) - 1,
             agv_id=schedule.agv_id,
             constraints=constraints,
+            traffic_rules=traffic_rules,
         )
         if to_dropoff is None:
             return []
@@ -291,6 +348,7 @@ def _plan_single_agv_path(
             len(full_path) - 1,
             schedule.agv_id,
             constraints,
+            traffic_rules,
         )
         if to_parking is None:
             return []
@@ -332,6 +390,8 @@ def _resolve_path_collisions(
     parking_goals: list[Coordinate] | None,
     fallback_parking_goals: list[Coordinate],
     dispatch_gap: int,
+    staging_goals: list[Coordinate] | None,
+    traffic_rules: TrafficRules | None,
     max_iterations: int = 1000,
     hold_final: bool = False,
 ) -> list[list[Coordinate]]:
@@ -368,6 +428,8 @@ def _resolve_path_collisions(
                 parking_goal,
                 fallback_parking_goals,
                 dispatch_gap,
+                staging_goals,
+                traffic_rules,
                 reservations,
                 trial_constraints,
             )
@@ -494,6 +556,7 @@ def _find_parking_path(
     start_time: int,
     agv_id: int,
     constraints: ConstraintTable | None = None,
+    traffic_rules: TrafficRules | None = None,
 ) -> list[Coordinate] | None:
     for goal in [preferred_goal] + fallback_goals:
         path = astar_with_reservations(
@@ -504,6 +567,7 @@ def _find_parking_path(
             start_time,
             agv_id=agv_id,
             constraints=constraints,
+            traffic_rules=traffic_rules,
         )
         if path is not None:
             return path
@@ -629,6 +693,7 @@ def astar_with_reservations(
     start_time: int = 0,
     agv_id: int | None = None,
     constraints: ConstraintTable | None = None,
+    traffic_rules: TrafficRules | None = None,
 ) -> list[Coordinate] | None:
     reservations = reservations or {}
     rows, cols = len(grid_map), len(grid_map[0])
@@ -662,6 +727,10 @@ def astar_with_reservations(
             if not (0 <= nr < rows and 0 <= nc < cols):
                 continue
             if grid_map[nr][nc] == 1:
+                continue
+            if traffic_rules is not None and not traffic_rules.allows_move(
+                (row, col), (nr, nc)
+            ):
                 continue
             if _is_reserved_by_other(reservations, (nr, nc), time, agv_id):
                 continue

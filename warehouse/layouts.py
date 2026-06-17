@@ -9,6 +9,7 @@ class WarehouseLayout:
     map: list[list[int]]
     agv_starts: list[Coordinate]
     parking_points: list[Coordinate]
+    buffer_points: list[Coordinate]
     shelf_points: dict[str, Coordinate]
     pickup_points: dict[str, Coordinate]
     dropoff_points: dict[str, Coordinate]
@@ -105,6 +106,7 @@ def create_default_warehouse_layout(
         (13, 13),
     ]
     parking_points = list(agv_starts)
+    buffer_points = _build_buffer_points(grid, agv_starts)
     shelf_points, pickup_points = _build_shelf_and_pickup_points()
     dropoff_points = {
         "INBOUND": (14, 8),
@@ -117,12 +119,34 @@ def create_default_warehouse_layout(
         map=grid,
         agv_starts=agv_starts[:num_agvs],
         parking_points=parking_points[:num_agvs],
+        buffer_points=buffer_points[:num_agvs],
         shelf_points=shelf_points,
         pickup_points=pickup_points,
         dropoff_points=dropoff_points,
         station_points=station_points,
         max_episode_steps=max_episode_steps,
     )
+
+
+def _build_buffer_points(
+    grid: list[list[int]], agv_starts: list[Coordinate]
+) -> list[Coordinate]:
+    points = []
+    used = set()
+    for start_row, _ in agv_starts:
+        for col in (0, 1):
+            candidate = (start_row, col)
+            if candidate not in used and grid[candidate[0]][candidate[1]] == 0:
+                points.append(candidate)
+                used.add(candidate)
+                break
+    for row in range(len(grid) - 1, -1, -1):
+        for col in (0, 1):
+            candidate = (row, col)
+            if candidate not in used and grid[row][col] == 0:
+                points.append(candidate)
+                used.add(candidate)
+    return points
 
 
 def _build_shelf_and_pickup_points() -> tuple[dict[str, Coordinate], dict[str, Coordinate]]:

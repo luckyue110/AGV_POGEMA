@@ -6,6 +6,7 @@ def test_default_layout_has_free_agv_starts_and_named_points():
 
     assert len(layout.agv_starts) == 4
     assert len(layout.parking_points) == 4
+    assert len(layout.buffer_points) == 4
     assert layout.pickup_points
     assert layout.shelf_points
     assert layout.dropoff_points
@@ -14,6 +15,9 @@ def test_default_layout_has_free_agv_starts_and_named_points():
     for row, col in layout.agv_starts:
         assert layout.map[row][col] == 0
     for row, col in layout.parking_points:
+        assert layout.map[row][col] == 0
+    for row, col in layout.buffer_points:
+        assert col in (0, 1)
         assert layout.map[row][col] == 0
     for row, col in layout.shelf_points.values():
         assert layout.map[row][col] == 1

@@ -1,10 +1,17 @@
 import argparse
+import os
 
 from utils.result_saver import log_run_summary, save_animation, setup_logger
 from warehouse.layouts import WarehouseLayout, create_default_warehouse_layout
 from warehouse.planner import path_to_actions, plan_scheduled_paths, plan_scheduled_paths_cbs
-from warehouse.scheduler import ScheduleResult, schedule_tasks_greedy, shortest_path_length
+from warehouse.scheduler import (
+    ScheduleResult,
+    schedule_tasks_greedy,
+    schedule_tasks_ilp,
+    shortest_path_length,
+)
 from warehouse.tasks import TransportTask, generate_random_tasks, parse_task_spec
+from warehouse.traffic import TrafficRules, build_warehouse_zone_traffic_rules
 from warehouse.visualization import save_route_map_svg, save_solution_animation_svg
 from warehouse.visualization import save_enhanced_pogema_svg
 
@@ -17,6 +24,46 @@ def build_tasks_from_args(args, layout: WarehouseLayout) -> list[TransportTask]:
     return generate_random_tasks(layout, count=count, seed=args.seed)
 
 
+def build_buffer_points_from_args(
+    args, layout: WarehouseLayout
+) -> list[tuple[int, int]]:
+    if not args.buffer_points:
+        return layout.buffer_points
+    return parse_buffer_points(args.buffer_points, layout)
+
+
+def parse_buffer_points(spec: str, layout: WarehouseLayout) -> list[tuple[int, int]]:
+    points = []
+    for raw_item in spec.split(";"):
+        item = raw_item.strip()
+        if not item:
+            continue
+        parts = [part.strip() for part in item.split(",")]
+        if len(parts) != 2:
+            raise ValueError(
+                "buffer points must use row,col pairs separated by semicolons"
+            )
+        try:
+            point = (int(parts[0]), int(parts[1]))
+        except ValueError as exc:
+            raise ValueError("buffer point coordinates must be integers") from exc
+        _validate_buffer_point(point, layout)
+        if point not in points:
+            points.append(point)
+
+    if not points:
+        raise ValueError("at least one buffer point is required")
+    return points
+
+
+def _validate_buffer_point(point: tuple[int, int], layout: WarehouseLayout) -> None:
+    row, col = point
+    if not (0 <= row < len(layout.map) and 0 <= col < len(layout.map[0])):
+        raise ValueError(f"buffer point {point} is outside the warehouse map")
+    if layout.map[row][col] != 0:
+        raise ValueError(f"buffer point {point} must be on a free cell")
+
+
 def format_locations(layout: WarehouseLayout) -> str:
     lines = ["Pickup points:"]
     for name, coord in sorted(layout.pickup_points.items()):
@@ -24,6 +71,9 @@ def format_locations(layout: WarehouseLayout) -> str:
     lines.append("Dropoff points:")
     for name, coord in sorted(layout.dropoff_points.items()):
         lines.append(f"  {name}: {coord}")
+    lines.append("Default buffer points:")
+    for index, coord in enumerate(layout.buffer_points):
+        lines.append(f"  B{index}: {coord}")
     return "\n".join(lines)
 
 
@@ -77,11 +127,134 @@ def build_pogema_targets(
     return targets
 
 
-def build_pogema_output_names(planner_name: str) -> tuple[str, str]:
+def build_output_directory(args) -> str:
+    return os.path.join(args.output_root, args.case_name, args.planner)
+
+
+def build_route_map_path(args) -> str:
+    return args.route_map or os.path.join(
+        build_output_directory(args), "warehouse_route_map.svg"
+    )
+
+
+def build_solution_animation_path(args) -> str:
+    return args.solution_animation or os.path.join(
+        build_output_directory(args), "warehouse_solution_animated.svg"
+    )
+
+
+def build_pogema_output_names(
+    planner_name: str, output_dir: str = "outputs/animations"
+) -> tuple[str, str]:
     suffix = "_cbs" if planner_name == "cbs" else ""
     animation_name = f"warehouse_agv{suffix}"
-    enhanced_path = f"outputs/animations/warehouse_agv{suffix}_enhanced.svg"
+    output_dir = output_dir.rstrip("/\\")
+    enhanced_path = f"{output_dir}/warehouse_agv{suffix}_enhanced.svg"
     return animation_name, enhanced_path
+
+
+def build_effective_dispatch_gap(args) -> int:
+    if args.dispatch_policy == "asap":
+        return 0
+    return args.dispatch_gap
+
+
+def build_parking_goals(
+    args, layout: WarehouseLayout, schedule: ScheduleResult
+) -> list[tuple[int, int]] | None:
+    if args.parking_policy == "task-end":
+        return None
+    if args.parking_policy == "home":
+        return layout.agv_starts
+    if args.parking_policy != "nearest":
+        raise ValueError(f"unknown parking policy: {args.parking_policy}")
+
+    assigned = []
+    used = set()
+    for agv_schedule in schedule.agv_schedules:
+        own_home = layout.parking_points[agv_schedule.agv_id]
+        candidates = _unique_points([own_home, *layout.buffer_points])
+        origin = (
+            agv_schedule.tasks[-1].dropoff
+            if agv_schedule.tasks
+            else agv_schedule.start
+        )
+        goal = _nearest_unused_point(layout.map, origin, candidates, used)
+        assigned.append(goal if goal is not None else agv_schedule.start)
+        used.add(assigned[-1])
+    return assigned
+
+
+def build_fallback_parking_goals(
+    args, layout: WarehouseLayout
+) -> list[tuple[int, int]]:
+    if args.parking_policy in ("nearest", "task-end"):
+        return []
+    return _unique_points([*layout.parking_points, *layout.buffer_points])
+
+
+def _unique_points(points: list[tuple[int, int]]) -> list[tuple[int, int]]:
+    unique = []
+    seen = set()
+    for point in points:
+        if point not in seen:
+            unique.append(point)
+            seen.add(point)
+    return unique
+
+
+def _nearest_unused_point(
+    grid_map: list[list[int]],
+    origin: tuple[int, int],
+    candidates: list[tuple[int, int]],
+    used: set[tuple[int, int]],
+) -> tuple[int, int] | None:
+    best = None
+    for index, candidate in enumerate(candidates):
+        if candidate in used:
+            continue
+        distance = shortest_path_length(grid_map, origin, candidate)
+        if distance is None:
+            continue
+        score = (distance, index)
+        if best is None or score < best[0]:
+            best = (score, candidate)
+    return None if best is None else best[1]
+
+
+def build_traffic_rules_from_args(
+    args, layout: WarehouseLayout
+) -> TrafficRules | None:
+    if args.traffic_rules == "none":
+        return None
+    if args.traffic_rules == "warehouse-zones":
+        return build_warehouse_zone_traffic_rules(layout)
+    raise ValueError(f"unknown traffic rules: {args.traffic_rules}")
+
+
+def build_schedule(args, layout: WarehouseLayout, tasks: list[TransportTask]) -> ScheduleResult:
+    traffic_rules = build_traffic_rules_from_args(args, layout)
+    dispatch_gap = build_effective_dispatch_gap(args)
+    if args.scheduler == "ilp":
+        return schedule_tasks_ilp(
+            layout.map,
+            layout.agv_starts,
+            tasks,
+            operation_wait=args.operation_wait,
+            turn_wait=args.turn_wait,
+            parking_goals=layout.agv_starts,
+            fallback_parking_goals=layout.parking_points,
+            dispatch_gap=dispatch_gap,
+            staging_goals=build_buffer_points_from_args(args, layout),
+            traffic_rules=traffic_rules,
+        )
+    return schedule_tasks_greedy(
+        layout.map,
+        layout.agv_starts,
+        tasks,
+        operation_wait=args.operation_wait,
+        turn_wait=args.turn_wait,
+    )
 
 
 def run_warehouse_simulation(args) -> None:
@@ -93,27 +266,29 @@ def run_warehouse_simulation(args) -> None:
         print(format_locations(layout))
         return
 
+    staging_goals = build_buffer_points_from_args(args, layout)
+    traffic_rules = build_traffic_rules_from_args(args, layout)
+    dispatch_gap = build_effective_dispatch_gap(args)
     tasks = build_tasks_from_args(args, layout)
-    schedule = schedule_tasks_greedy(
-        layout.map,
-        layout.agv_starts,
-        tasks,
-        operation_wait=args.operation_wait,
-        turn_wait=args.turn_wait,
-    )
+    schedule = build_schedule(args, layout, tasks)
+    parking_goals = build_parking_goals(args, layout, schedule)
     planner = plan_scheduled_paths_cbs if args.planner == "cbs" else plan_scheduled_paths
     paths = planner(
         layout.map,
         schedule.agv_schedules,
         operation_wait=args.operation_wait,
         turn_wait=args.turn_wait,
-        parking_goals=layout.agv_starts,
-        fallback_parking_goals=layout.parking_points,
-        dispatch_gap=args.dispatch_gap,
+        parking_goals=parking_goals,
+        fallback_parking_goals=build_fallback_parking_goals(args, layout),
+        dispatch_gap=dispatch_gap,
+        staging_goals=staging_goals,
+        traffic_rules=traffic_rules,
     )
-    route_map_path = save_route_map_svg(layout, tasks, schedule, paths, args.route_map)
+    route_map_path = save_route_map_svg(
+        layout, tasks, schedule, paths, build_route_map_path(args)
+    )
     animation_path = save_solution_animation_svg(
-        layout, tasks, schedule, paths, args.solution_animation
+        layout, tasks, schedule, paths, build_solution_animation_path(args)
     )
     print(f"Route map saved: {route_map_path}")
     print(f"Solution animation saved: {animation_path}")
@@ -144,10 +319,11 @@ def _execute_pogema_simulation(
         seed=args.seed, targets=build_pogema_targets(layout, schedule)
     )
     env = _make_pogema(grid_config)
+    output_dir = build_output_directory(args)
     env = AnimationMonitor(
         env,
         animation_config=AnimationConfig(
-            directory="outputs/animations",
+            directory=output_dir,
             static=False,
             show_agents=True,
         ),
@@ -193,8 +369,10 @@ def _execute_pogema_simulation(
         if all(truncated):
             break
 
-    animation_name, enhanced_output_path = build_pogema_output_names(args.planner)
-    out_path = save_animation(env, animation_name)
+    animation_name, enhanced_output_path = build_pogema_output_names(
+        args.planner, output_dir
+    )
+    out_path = save_animation(env, animation_name, output_dir)
     enhanced_path = save_enhanced_pogema_svg(
         out_path,
         layout,
@@ -244,26 +422,68 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--agvs", type=int, default=4)
     parser.add_argument("--max-episode-steps", type=int, default=256)
+    parser.add_argument(
+        "--case-name",
+        type=str,
+        default="default",
+        help="Output case folder under the animation root",
+    )
+    parser.add_argument(
+        "--output-root",
+        type=str,
+        default="outputs/animations",
+        help="Root folder for animation outputs",
+    )
     parser.add_argument("--operation-wait", type=int, default=3)
     parser.add_argument("--turn-wait", type=int, default=2)
     parser.add_argument("--dispatch-gap", type=int, default=4)
+    parser.add_argument(
+        "--dispatch-policy",
+        choices=["fixed", "asap"],
+        default="fixed",
+        help="fixed uses --dispatch-gap; asap removes artificial dispatch delay",
+    )
+    parser.add_argument(
+        "--parking-policy",
+        choices=["home", "nearest", "task-end"],
+        default="home",
+        help="Final parking target policy after assigned tasks finish",
+    )
+    parser.add_argument(
+        "--buffer-points",
+        type=str,
+        default=None,
+        help='Custom staging buffer cells as "row,col;row,col". Defaults to leftmost free cells.',
+    )
     parser.add_argument(
         "--planner",
         choices=["prioritized", "cbs"],
         default="prioritized",
         help="Path conflict resolver to use",
     )
+    parser.add_argument(
+        "--scheduler",
+        choices=["greedy", "ilp"],
+        default="greedy",
+        help="Task assignment strategy to use",
+    )
+    parser.add_argument(
+        "--traffic-rules",
+        choices=["none", "warehouse-zones"],
+        default="none",
+        help="Traffic rule profile used by path planning",
+    )
     parser.add_argument("--list-locations", action="store_true")
     parser.add_argument(
         "--route-map",
         type=str,
-        default="outputs/animations/warehouse_route_map.svg",
+        default=None,
         help="Annotated static SVG route map output path",
     )
     parser.add_argument(
         "--solution-animation",
         type=str,
-        default="outputs/animations/warehouse_solution_animated.svg",
+        default=None,
         help="Annotated animated SVG solution output path",
     )
     return parser
