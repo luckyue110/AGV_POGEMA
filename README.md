@@ -48,6 +48,7 @@ Run a larger scenario with 8 AGVs and 16 random transport tasks:
 
 ```powershell
 uv run python warehouse_simulation.py `
+  --planner cbs `
   --agvs 8 `
   --random-tasks 16 `
   --seed 23 `
@@ -63,6 +64,16 @@ Run specified tasks:
 
 ```powershell
 uv run python warehouse_simulation.py --tasks "S1:OUTBOUND,S3:PACKING,S12:INBOUND"
+```
+
+Choose a planner:
+
+```powershell
+# Prioritized replanning, kept as the baseline strategy
+uv run python warehouse_simulation.py --planner prioritized
+
+# Conflict-Based Search
+uv run python warehouse_simulation.py --planner cbs
 ```
 
 ## Output Files
@@ -85,7 +96,12 @@ outputs/animations/warehouse_agv_enhanced.svg
 
 The core implementation lives in `warehouse/planner.py`.
 
-The current planning pipeline is:
+Two planners are available:
+
+- `prioritized`: prioritized planning with replanning fallback.
+- `cbs`: Conflict-Based Search using per-agent constraints and low-level constrained A*.
+
+The prioritized planning pipeline is:
 
 1. The scheduler assigns each AGV a task sequence.
 2. A single-AGV planner builds a path through:
@@ -104,7 +120,7 @@ The current planning pipeline is:
 6. The lower-priority AGV is replanned with the new constraint.
 7. If a constrained replan is not feasible, a small local wait is used as a fallback.
 
-This is not a full optimal CBS implementation. It is a practical prioritized planning with replanning approach. It is much better than a wait-only repair strategy for this warehouse demo because it can reroute an AGV instead of repeatedly forcing it to stop.
+The CBS planner uses the same low-level constrained A* and searches over high-level constraint nodes. When a conflict is found, CBS creates child nodes that constrain one of the conflicting AGVs and replans only that AGV.
 
 ## How to Customize the Algorithm
 

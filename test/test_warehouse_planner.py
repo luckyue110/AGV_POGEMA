@@ -4,6 +4,7 @@ from warehouse.planner import (
     apply_turn_waits,
     astar_with_reservations,
     path_to_actions,
+    plan_scheduled_paths_cbs,
     plan_scheduled_paths,
 )
 from warehouse.scheduler import schedule_tasks_greedy
@@ -275,6 +276,32 @@ def test_prioritized_replanning_reduces_agv6_stop_and_go_in_complex_case():
     assert len(paths[6]) < 260
     assert _wait_steps(paths[6]) < 190
     assert len(_long_wait_runs(paths[6], minimum=10)) < 6
+
+
+def test_cbs_planner_solves_complex_case_without_vertex_or_swap_collisions():
+    layout = create_default_warehouse_layout(num_agvs=8, max_episode_steps=3000)
+    tasks = generate_random_tasks(layout, count=16, seed=23)
+    schedule = schedule_tasks_greedy(
+        layout.map,
+        layout.agv_starts,
+        tasks,
+        operation_wait=3,
+        turn_wait=2,
+    )
+
+    paths = plan_scheduled_paths_cbs(
+        layout.map,
+        schedule.agv_schedules,
+        operation_wait=3,
+        turn_wait=2,
+        parking_goals=layout.agv_starts,
+        fallback_parking_goals=layout.parking_points,
+        dispatch_gap=12,
+    )
+
+    assert _first_collision(paths) is None
+    assert max(len(path) for path in paths) <= 300
+    assert sum(len(path) - 1 for path in paths) <= 1300
 
 
 def _first_collision(paths):

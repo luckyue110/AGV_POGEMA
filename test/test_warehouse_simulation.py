@@ -4,6 +4,7 @@ from warehouse.scheduler import schedule_tasks_greedy
 from warehouse_simulation import (
     build_tasks_from_args,
     build_pogema_targets,
+    build_parser,
     format_locations,
     format_route_plan,
 )
@@ -24,6 +25,14 @@ def test_build_tasks_from_specified_args():
 
     assert [task.pickup_name for task in tasks] == ["S1", "S2"]
     assert [task.dropoff_name for task in tasks] == ["OUTBOUND", "PACKING"]
+
+
+def test_parser_accepts_cbs_planner():
+    parser = build_parser()
+
+    args = parser.parse_args(["--planner", "cbs"])
+
+    assert args.planner == "cbs"
 
 
 def test_build_tasks_defaults_to_small_random_set():

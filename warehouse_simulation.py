@@ -2,7 +2,7 @@ import argparse
 
 from utils.result_saver import log_run_summary, save_animation, setup_logger
 from warehouse.layouts import WarehouseLayout, create_default_warehouse_layout
-from warehouse.planner import path_to_actions, plan_scheduled_paths
+from warehouse.planner import path_to_actions, plan_scheduled_paths, plan_scheduled_paths_cbs
 from warehouse.scheduler import ScheduleResult, schedule_tasks_greedy, shortest_path_length
 from warehouse.tasks import TransportTask, generate_random_tasks, parse_task_spec
 from warehouse.visualization import save_route_map_svg, save_solution_animation_svg
@@ -94,7 +94,8 @@ def run_warehouse_simulation(args) -> None:
         operation_wait=args.operation_wait,
         turn_wait=args.turn_wait,
     )
-    paths = plan_scheduled_paths(
+    planner = plan_scheduled_paths_cbs if args.planner == "cbs" else plan_scheduled_paths
+    paths = planner(
         layout.map,
         schedule.agv_schedules,
         operation_wait=args.operation_wait,
@@ -238,6 +239,12 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--operation-wait", type=int, default=3)
     parser.add_argument("--turn-wait", type=int, default=2)
     parser.add_argument("--dispatch-gap", type=int, default=4)
+    parser.add_argument(
+        "--planner",
+        choices=["prioritized", "cbs"],
+        default="prioritized",
+        help="Path conflict resolver to use",
+    )
     parser.add_argument("--list-locations", action="store_true")
     parser.add_argument(
         "--route-map",

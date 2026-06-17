@@ -70,6 +70,126 @@ def plan_scheduled_paths(
     )
 
 
+def plan_scheduled_paths_cbs(
+    grid_map: list[list[int]],
+    schedules: list[AGVSchedule],
+    operation_wait: int = 3,
+    turn_wait: int = 2,
+    parking_goals: list[Coordinate] | None = None,
+    fallback_parking_goals: list[Coordinate] | None = None,
+    dispatch_gap: int = 0,
+    max_nodes: int = 2000,
+) -> list[list[Coordinate]]:
+    hold_final = parking_goals is not None
+    root_constraints: ConstraintTable = {}
+    root_paths = _plan_all_paths_for_constraints(
+        grid_map,
+        schedules,
+        operation_wait,
+        turn_wait,
+        parking_goals,
+        fallback_parking_goals or [],
+        dispatch_gap,
+        root_constraints,
+    )
+    if not root_paths:
+        return plan_scheduled_paths(
+            grid_map,
+            schedules,
+            operation_wait,
+            turn_wait,
+            parking_goals,
+            fallback_parking_goals,
+            dispatch_gap,
+        )
+
+    open_set = []
+    counter = 0
+    heapq.heappush(
+        open_set,
+        (_paths_cost(root_paths), _paths_makespan(root_paths), counter, root_constraints, root_paths),
+    )
+
+    while open_set and counter < max_nodes:
+        _, _, _, constraints, paths = heapq.heappop(open_set)
+        collision = _first_path_collision(paths, hold_final=hold_final)
+        if collision is None:
+            return paths
+
+        for agv_id in (collision[2], collision[3]):
+            child_constraints = _copy_constraints(constraints)
+            child_constraints.setdefault(agv_id, set()).add(
+                _constraint_from_collision(collision, agv_id)
+            )
+            child_paths = [list(path) for path in paths]
+            parking_goal = parking_goals[agv_id] if parking_goals else None
+            replanned = _plan_single_agv_path(
+                grid_map,
+                schedules[agv_id],
+                operation_wait,
+                turn_wait,
+                parking_goal,
+                fallback_parking_goals or [],
+                dispatch_gap,
+                reservations={},
+                constraints=child_constraints,
+            )
+            if not replanned:
+                continue
+            child_paths[agv_id] = replanned
+            counter += 1
+            heapq.heappush(
+                open_set,
+                (
+                    _paths_cost(child_paths),
+                    _paths_makespan(child_paths),
+                    counter,
+                    child_constraints,
+                    child_paths,
+                ),
+            )
+
+    return plan_scheduled_paths(
+        grid_map,
+        schedules,
+        operation_wait,
+        turn_wait,
+        parking_goals,
+        fallback_parking_goals,
+        dispatch_gap,
+    )
+
+
+def _plan_all_paths_for_constraints(
+    grid_map: list[list[int]],
+    schedules: list[AGVSchedule],
+    operation_wait: int,
+    turn_wait: int,
+    parking_goals: list[Coordinate] | None,
+    fallback_parking_goals: list[Coordinate],
+    dispatch_gap: int,
+    constraints: ConstraintTable,
+) -> list[list[Coordinate]]:
+    paths = []
+    for schedule in schedules:
+        parking_goal = parking_goals[schedule.agv_id] if parking_goals else None
+        path = _plan_single_agv_path(
+            grid_map,
+            schedule,
+            operation_wait,
+            turn_wait,
+            parking_goal,
+            fallback_parking_goals,
+            dispatch_gap,
+            reservations={},
+            constraints=constraints,
+        )
+        if not path:
+            return []
+        paths.append(path)
+    return paths
+
+
 def _plan_single_agv_path(
     grid_map: list[list[int]],
     schedule: AGVSchedule,
@@ -83,7 +203,16 @@ def _plan_single_agv_path(
 ) -> list[Coordinate]:
     current = schedule.start
     full_path = [current]
-    _append_wait(full_path, current, schedule.agv_id * dispatch_gap)
+    if not _append_wait(
+        full_path,
+        current,
+        schedule.agv_id * dispatch_gap,
+        reservations,
+        grid_map,
+        schedule.agv_id,
+        constraints,
+    ):
+        return []
 
     for task in schedule.tasks:
         to_pickup = astar_with_reservations(
@@ -177,6 +306,21 @@ def _plan_single_agv_path(
             return []
 
     return full_path
+
+
+def _paths_cost(paths: list[list[Coordinate]]) -> int:
+    return sum(max(len(path) - 1, 0) for path in paths)
+
+
+def _paths_makespan(paths: list[list[Coordinate]]) -> int:
+    return max((max(len(path) - 1, 0) for path in paths), default=0)
+
+
+def _copy_constraints(constraints: ConstraintTable) -> ConstraintTable:
+    return {
+        agv_id: set(agent_constraints)
+        for agv_id, agent_constraints in constraints.items()
+    }
 
 
 def _resolve_path_collisions(
@@ -505,7 +649,9 @@ def astar_with_reservations(
             continue
         visited.add(state)
 
-        if (row, col) == goal:
+        if (row, col) == goal and _goal_constraints_satisfied(
+            constraints, agv_id, goal, time
+        ):
             return _reconstruct_path(came_from, state)
 
         if time - start_time >= max_t:
@@ -612,6 +758,20 @@ def _violates_constraint(
         ("vertex", time + 1, next_pos) in agent_constraints
         or ("edge", time, current, next_pos) in agent_constraints
     )
+
+
+def _goal_constraints_satisfied(
+    constraints: ConstraintTable | None,
+    agv_id: int | None,
+    goal: Coordinate,
+    time: int,
+) -> bool:
+    if constraints is None or agv_id is None:
+        return True
+    for constraint in constraints.get(agv_id, set()):
+        if constraint[0] == "vertex" and constraint[2] == goal and constraint[1] >= time:
+            return False
+    return True
 
 
 def _reconstruct_path(came_from: dict, state: tuple[int, int, int]) -> list[Coordinate]:
