@@ -77,6 +77,13 @@ def build_pogema_targets(
     return targets
 
 
+def build_pogema_output_names(planner_name: str) -> tuple[str, str]:
+    suffix = "_cbs" if planner_name == "cbs" else ""
+    animation_name = f"warehouse_agv{suffix}"
+    enhanced_path = f"outputs/animations/warehouse_agv{suffix}_enhanced.svg"
+    return animation_name, enhanced_path
+
+
 def run_warehouse_simulation(args) -> None:
     layout = create_default_warehouse_layout(
         num_agvs=args.agvs, max_episode_steps=args.max_episode_steps
@@ -186,14 +193,15 @@ def _execute_pogema_simulation(
         if all(truncated):
             break
 
-    out_path = save_animation(env, "warehouse_agv")
+    animation_name, enhanced_output_path = build_pogema_output_names(args.planner)
+    out_path = save_animation(env, animation_name)
     enhanced_path = save_enhanced_pogema_svg(
         out_path,
         layout,
         tasks,
         schedule,
         paths,
-        "outputs/animations/warehouse_agv_enhanced.svg",
+        enhanced_output_path,
         overlay_paths=executed_paths,
     )
     log_run_summary(

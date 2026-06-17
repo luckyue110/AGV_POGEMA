@@ -2,6 +2,7 @@ from warehouse.layouts import create_default_warehouse_layout
 from warehouse.planner import plan_scheduled_paths
 from warehouse.scheduler import schedule_tasks_greedy
 from warehouse_simulation import (
+    build_pogema_output_names,
     build_tasks_from_args,
     build_pogema_targets,
     build_parser,
@@ -33,6 +34,13 @@ def test_parser_accepts_cbs_planner():
     args = parser.parse_args(["--planner", "cbs"])
 
     assert args.planner == "cbs"
+
+
+def test_cbs_pogema_outputs_use_distinct_names():
+    animation_name, enhanced_path = build_pogema_output_names("cbs")
+
+    assert animation_name == "warehouse_agv_cbs"
+    assert enhanced_path == "outputs/animations/warehouse_agv_cbs_enhanced.svg"
 
 
 def test_build_tasks_defaults_to_small_random_set():
